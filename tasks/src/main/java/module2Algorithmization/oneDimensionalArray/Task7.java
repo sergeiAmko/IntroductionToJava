@@ -1,38 +1,27 @@
-package module1BasicOfSoftwareCodeDevelopment.module2Algorithmization.oneDimensionalArray;
+package module2Algorithmization.oneDimensionalArray;
 
 import java.util.Arrays;
 import java.util.Scanner;
 
-public class Task3 {
+public class Task7 {
     public static void main(String[] args) {
-
-        int n = 0, countPositive = 0,countNegative=0,countZero=0;
+        int n = 0;
+        double sum = 0;
         double[] a;
+        boolean isSimple = true;
+
         Scanner scanner = new Scanner(System.in);
 
         while (n <= 0) {
-            n = getIntValue(scanner, "Input the number of  elements in the array ");
+            n = getIntValue(scanner, "Input the number of elements in the array");
         }
         a = new double[n];
 
         for (int i = 0; i < n; i++) {
-            a[i] = getDoubleValue(scanner, "Input the number");
+            a[i] = getDoubleValue(scanner, "Input the number 0");
         }
 
-        for (int i = 0; i < n; i++) {
-            if (a[i]<0){
-                countNegative++;
-            }else if (a[i]>0){
-                countPositive++;
-            }else {
-                countZero++;
-            }
-        }
-
-        System.out.println("Array input- "+Arrays.toString(a));
-        System.out.println("count negative numbers= " + countNegative);
-        System.out.println("count numbers of zero= " + countZero);
-        System.out.println("count positive numbers= " + countPositive);
+        System.out.println(max(a));
 
 
     }
@@ -60,7 +49,27 @@ public class Task3 {
                 scanner.next();
             }
         }
+    }
 
+    private static double max(double[] a) {
+        double max = a[0] + a[a.length - 1];
+        int aSize = a.length;
+        double[] mass = new double[a.length % 2 == 0 ? a.length / 2 : a.length / 2 + 1];
+        for (int i = 0; i < (aSize % 2==0 ? aSize / 2 : aSize / 2 + 1); i++) {
+            if (i == aSize - 1 - i) {
+                mass[i] = a[i];
+            } else {
+                mass[i] = a[i] + a[aSize - 1 - i];
+            }
+        }
+        System.out.println("massive a= " + Arrays.toString(a));
+        System.out.println("massive mass= " + Arrays.toString(mass));
 
+        for (double t : mass) {
+            if (t > max) {
+                max = t;
+            }
+        }
+        return max;
     }
 }

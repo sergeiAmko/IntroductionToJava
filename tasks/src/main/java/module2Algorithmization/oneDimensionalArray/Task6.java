@@ -1,43 +1,55 @@
-package module1BasicOfSoftwareCodeDevelopment.module2Algorithmization.oneDimensionalArray;
+package module2Algorithmization.oneDimensionalArray;
 
 import java.util.Arrays;
 import java.util.Scanner;
 
-public class Task2 {
+public class Task6 {
     public static void main(String[] args) {
 
-        int n = 0, z, count = 0;
-        double[] a,input;
+        int n = 0;
+        double sum = 0;
+        double[] a;
+        boolean isSimple = true;
+
         Scanner scanner = new Scanner(System.in);
 
         while (n <= 0) {
             n = getIntValue(scanner, "Input the number of elements in the array ");
         }
         a = new double[n];
-        input = new double[n];
 
         for (int i = 0; i < n; i++) {
-            a[i] = getDoubleValue(scanner, "Input the number ");
+            a[i] = getDoubleValue(scanner, "Input the number 0");
         }
 
-        System.out.println("_________________________________________________________");
-        z = getIntValue(scanner, "Input z");
-
-
+        System.out.print("new massive");
         for (int i = 0; i < n; i++) {
-            input[i]=a[i];
-            if (a[i] > z ) {
-                a[i]=z;
-                count++;
+            if (i == 1) {
+                sum += a[i];
+            }else if (i == 2) {
+                sum += a[i];
+            }else if (i == 0) {
+
+            } else {
+                for (int j = 2; j < i; j++) {
+                    if (i % j == 0) {
+                        isSimple = false;
+                    }
+                }
+                if (isSimple) {
+                    sum += a[i];
+                }
+                isSimple = true;
+
+
             }
         }
 
-        System.out.println("Array input- "+Arrays.toString(input));
-        System.out.println("count numbers > z= " + count);
-        System.out.println("Array output- " + Arrays.toString(a));
 
-
+        System.out.println("Array input- " + Arrays.toString(a));
+        System.out.println("sum= " + sum);
     }
+
 
     private static int getIntValue(Scanner scanner, String message) {
         System.out.println(message);

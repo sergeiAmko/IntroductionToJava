@@ -1,14 +1,13 @@
-package module1BasicOfSoftwareCodeDevelopment.module2Algorithmization.oneDimensionalArray;
+package module2Algorithmization.oneDimensionalArray;
 
 import java.util.Arrays;
 import java.util.Scanner;
 
-public class Task4 {
+public class Task2 {
     public static void main(String[] args) {
 
-        int n = 0, maxIndex=0, minIndex=0;
-        double max, min;
-        double[] a, input;
+        int n = 0, z, count = 0;
+        double[] a,input;
         Scanner scanner = new Scanner(System.in);
 
         while (n <= 0) {
@@ -18,32 +17,27 @@ public class Task4 {
         input = new double[n];
 
         for (int i = 0; i < n; i++) {
-            a[i] = getDoubleValue(scanner, "Input the number 0");
-            input[i] = a[i];
+            a[i] = getDoubleValue(scanner, "Input the number ");
         }
 
-        max = a[0];
-        min = a[0];
+        System.out.println("_________________________________________________________");
+        z = getIntValue(scanner, "Input z");
+
 
         for (int i = 0; i < n; i++) {
-            if (a[i] > max) {
-                max = a[i];
-                maxIndex=i;
-            } else if (a[i] < min) {
-                min = a[i];
-                minIndex=i;
+            input[i]=a[i];
+            if (a[i] > z ) {
+                a[i]=z;
+                count++;
             }
         }
 
-        a[maxIndex]=min;
-        a[minIndex]=max;
-
-        System.out.println("Array input- " + Arrays.toString(input));
-        System.out.println("min= " + min);
-        System.out.println("max= " + max);
+        System.out.println("Array input- "+Arrays.toString(input));
+        System.out.println("count numbers > z= " + count);
         System.out.println("Array output- " + Arrays.toString(a));
-    }
 
+
+    }
 
     private static int getIntValue(Scanner scanner, String message) {
         System.out.println(message);

@@ -1,30 +1,49 @@
-package module1BasicOfSoftwareCodeDevelopment.module2Algorithmization.oneDimensionalArray;
+package module2Algorithmization.oneDimensionalArray;
 
 import java.util.Arrays;
 import java.util.Scanner;
 
-public class Task7 {
+public class Task4 {
     public static void main(String[] args) {
-        int n = 0;
-        double sum = 0;
-        double[] a;
-        boolean isSimple = true;
 
+        int n = 0, maxIndex=0, minIndex=0;
+        double max, min;
+        double[] a, input;
         Scanner scanner = new Scanner(System.in);
 
         while (n <= 0) {
-            n = getIntValue(scanner, "Input the number of elements in the array");
+            n = getIntValue(scanner, "Input the number of elements in the array ");
         }
         a = new double[n];
+        input = new double[n];
 
         for (int i = 0; i < n; i++) {
             a[i] = getDoubleValue(scanner, "Input the number 0");
+            input[i] = a[i];
         }
 
-        System.out.println(max(a));
+        max = a[0];
+        min = a[0];
 
+        for (int i = 0; i < n; i++) {
+            if (a[i] > max) {
+                max = a[i];
+                maxIndex=i;
+            } else if (a[i] < min) {
+                min = a[i];
+                minIndex=i;
+            }
+        }
 
+        a[maxIndex]=min;
+        a[minIndex]=max;
+
+        System.out.println("Array input- " + Arrays.toString(input));
+        System.out.println("min= " + min);
+        System.out.println("max= " + max);
+        System.out.println("Array output- " + Arrays.toString(a));
     }
+
 
     private static int getIntValue(Scanner scanner, String message) {
         System.out.println(message);
@@ -49,27 +68,7 @@ public class Task7 {
                 scanner.next();
             }
         }
-    }
 
-    private static double max(double[] a) {
-        double max = a[0] + a[a.length - 1];
-        int aSize = a.length;
-        double[] mass = new double[a.length % 2 == 0 ? a.length / 2 : a.length / 2 + 1];
-        for (int i = 0; i < (aSize % 2==0 ? aSize / 2 : aSize / 2 + 1); i++) {
-            if (i == aSize - 1 - i) {
-                mass[i] = a[i];
-            } else {
-                mass[i] = a[i] + a[aSize - 1 - i];
-            }
-        }
-        System.out.println("massive a= " + Arrays.toString(a));
-        System.out.println("massive mass= " + Arrays.toString(mass));
 
-        for (double t : mass) {
-            if (t > max) {
-                max = t;
-            }
-        }
-        return max;
     }
 }

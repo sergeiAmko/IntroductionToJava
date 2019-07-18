@@ -1,4 +1,4 @@
-package module1BasicOfSoftwareCodeDevelopment.module2Algorithmization.oneDimensionalArray;
+package module2Algorithmization.oneDimensionalArray;
 
 import java.util.Arrays;
 import java.util.Scanner;
