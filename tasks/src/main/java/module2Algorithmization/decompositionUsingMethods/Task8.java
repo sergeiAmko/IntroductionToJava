@@ -1,25 +1,19 @@
-package module2Algorithmization.oneDimensionalArray;
+package module2Algorithmization.decompositionUsingMethods;
 
-import java.util.Arrays;
 import java.util.Scanner;
 
-public class Task10 {
+public class Task8 {
     public static void main(String[] args) {
+        int[] a;
+        String s = "Input the number elements of array";
 
-        int[] a = getArray("Input the number of elements in the  array");
+        a = getArray(s);
 
-        System.out.println("new massive- " + Arrays.toString(removeOnZero(a)));
+        for (int i = 0; i < a.length; i = i + 2) {
+            System.out.println("sum from D[" + i + "] to D[" + (i + 2) + "]= " + summNumbersOfArrayFromStartToEnd(a, i, i + 3));
 
-
-    }
-
-    private static int[] removeOnZero(int[] ints) {
-        for (int i = 0; i < ints.length; i++) {
-            if (i == 0 || i % 2 == 0) {
-                ints[i] = 0;
-            }
         }
-        return ints;
+
     }
 
     private static int getIntValue(Scanner scanner, String message) {
@@ -50,5 +44,20 @@ public class Task10 {
             a[i] = getIntValue(scanner, "Input the number " + i);
         }
         return a;
+    }
+
+    private static int summNumbersOfArrayFromStartToEnd(int[] a, int start, int end) {
+        int sum = 0;
+        if (end > a.length) {
+            end = a.length;
+        }
+        System.out.print("Values from D[" + start + "] to D[" + end + "]= [");
+        for (int i = start; i < end; i++) {
+            sum += a[i];
+            System.out.print(a[i] + ", ");
+        }
+        System.out.print("]\n");
+
+        return sum;
     }
 }

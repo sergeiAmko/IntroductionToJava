@@ -1,25 +1,14 @@
-package module2Algorithmization.oneDimensionalArray;
+package module2Algorithmization.decompositionUsingMethods;
 
 import java.util.Arrays;
 import java.util.Scanner;
 
-public class Task10 {
+public class Task5 {
     public static void main(String[] args) {
 
         int[] a = getArray("Input the number of elements in the  array");
 
-        System.out.println("new massive- " + Arrays.toString(removeOnZero(a)));
-
-
-    }
-
-    private static int[] removeOnZero(int[] ints) {
-        for (int i = 0; i < ints.length; i++) {
-            if (i == 0 || i % 2 == 0) {
-                ints[i] = 0;
-            }
-        }
-        return ints;
+        System.out.println("pre-max= "+preMaximum(a));
     }
 
     private static int getIntValue(Scanner scanner, String message) {
@@ -50,5 +39,19 @@ public class Task10 {
             a[i] = getIntValue(scanner, "Input the number " + i);
         }
         return a;
+    }
+
+    private static int preMaximum(int[] a){
+        int max=a[0];
+        int preMax=Integer.MIN_VALUE;
+
+        for (int i = 1; i < a.length; i++) {
+            if (a[i]>max){
+                preMax=max;
+                max=a[i];
+            }
+        }
+
+        return preMax;
     }
 }

@@ -1,25 +1,17 @@
-package module2Algorithmization.oneDimensionalArray;
+package module2Algorithmization.arraysOfArrays;
 
-import java.util.Arrays;
 import java.util.Scanner;
 
-public class Task10 {
+public class Task2 {
+
     public static void main(String[] args) {
-
-        int[] a = getArray("Input the number of elements in the  array");
-
-        System.out.println("new massive- " + Arrays.toString(removeOnZero(a)));
+        int[][] a=getSquareArray("Input size n array");
 
 
-    }
-
-    private static int[] removeOnZero(int[] ints) {
-        for (int i = 0; i < ints.length; i++) {
-            if (i == 0 || i % 2 == 0) {
-                ints[i] = 0;
-            }
+        for (int i = 0; i < a.length; i++) {
+            System.out.print(a[i][i]+" ");
         }
-        return ints;
+
     }
 
     private static int getIntValue(Scanner scanner, String message) {
@@ -35,19 +27,22 @@ public class Task10 {
 
     }
 
-    private static int[] getArray(String s) {
+    private static int[][] getSquareArray(String s) {
         int n = 0;
-        int[] a;
+        int[][] a;
 
         Scanner scanner = new Scanner(System.in);
+
 
         while (n <= 0) {
             n = getIntValue(scanner, s);
         }
-        a = new int[n];
+        a = new int[n][n];
 
         for (int i = 0; i < n; i++) {
-            a[i] = getIntValue(scanner, "Input the number " + i);
+            for (int j = 0; j < n; j++) {
+                a[i][j] = getIntValue(scanner, "Input the number " + i + "*" + j);
+            }
         }
         return a;
     }
