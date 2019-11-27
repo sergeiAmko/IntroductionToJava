@@ -1,20 +1,20 @@
 package module2Algorithmization.OneDimensionalArraysSort;
 
-import java.util.Scanner;
+import static module2Algorithmization.Service.getArrayLong;
 
+
+/**
+ * Даны дроби p[1]/q[1], p[2]/q[2], ... p[n]/q[n] (p[i], q[i]. Составить программу,
+ * которая приводит эти дроби к общему знаменателю и упорядочивает их в порядке возрастания.
+ */
 public class Task8 {
     public static void main(String[] args) {
         long[] q, p;
         long[] pCommon;
-        int n = 0;
-        String s = "Input the number of elements in the  array n ";
+        String s = "Input the  array ";
 
-        Scanner scanner = new Scanner(System.in);
-        while (n <= 0) {
-            n = getIntValue(scanner, s);
-        }
-        p = getArray(scanner, n);
-        q = getArray(scanner, n);
+        p = getArrayLong(s + "p");
+        q = getArrayLong(s + "q");
 
 
         pCommon = numeratorWithCommonDenominator(p, q);
@@ -24,30 +24,6 @@ public class Task8 {
 
     }
 
-    private static int getIntValue(Scanner scanner, String message) {
-        System.out.println(message);
-        while (true) {
-            if (scanner.hasNextInt()) {
-                return scanner.nextInt();
-            } else if (scanner.hasNext()) {
-                System.out.println("You have entered an invalid number, input real number");
-                scanner.next();
-            }
-        }
-
-    }
-
-    private static long[] getArray(Scanner scanner, int n) {
-        long[] a;
-
-
-        a = new long[n];
-
-        for (int i = 0; i < n; i++) {
-            a[i] = getIntValue(scanner, "Input a[" + i + "]");
-        }
-        return a;
-    }
 
     private static long gcd(long a, long b) {
         return b == 0 ? a : gcd(b, a % b);
@@ -80,9 +56,9 @@ public class Task8 {
     private static long max(long[] a) {
         long max = a[0];
 
-        for (int i = 0; i < a.length; i++) {
-            if (a[i] > max) {
-                max = a[i];
+        for (long l : a) {
+            if (l > max) {
+                max = l;
             }
         }
         return max;

@@ -13,12 +13,14 @@ public class Counter {
             upperLimit = g;
         }
 
-        if (currentValue < lowerLimit || currentValue > upperLimit) {
-            currentValue = lowerLimit;
-        } else {
-
-            this.currentValue = currentValue;
+        if (currentValue <= lowerLimit) {
+            throw new IllegalArgumentException("Текущее значение меньше нижнего предела");
         }
+        if (currentValue >= upperLimit) {
+            throw new IllegalArgumentException("Текущее значение больше верхнего предела");
+
+        }
+        this.currentValue = currentValue;
 
         this.lowerLimit = lowerLimit;
         this.upperLimit = upperLimit;
@@ -32,27 +34,27 @@ public class Counter {
         return mistake;
     }
 
-    public void increment(){
+    public void increment() {
 
-        if (currentValue==upperLimit){
-            mistake="Превышен верхний лимит";
-        }else {
+        if (currentValue == upperLimit) {
+            mistake = "Превышен верхний лимит.";
+        } else {
             currentValue++;
-            mistake="";
+            mistake = "";
         }
     }
 
-    public void decrement(){
+    public void decrement() {
 
-        if (currentValue==lowerLimit){
-            mistake="Превышен нижний лимит";
-        }else {
+        if (currentValue == lowerLimit) {
+            mistake = "Превышен нижний лимит. Нижний лимит= ";
+        } else {
             currentValue--;
-            mistake="";
+            mistake = "";
         }
     }
 
-    public int getValue(){
+    public int getValue() {
         return currentValue;
     }
 }

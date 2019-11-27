@@ -1,25 +1,29 @@
 package module3StringsAndBasicsOfTextProcessing.regularExpression;
 
-
 import java.io.FileWriter;
 import java.io.IOException;
-import java.lang.String;
-
 import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.Arrays;
-import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import static java.lang.CharSequence.compare;
+import static module3StringsAndBasicsOfTextProcessing.Service.getChar;
+import static module6Tasks.task1.GetValues.getIntValue;
 
+
+/**
+ * Создать приложение, разбира.щее текст (текст хранится в строке) и позволяющее выполнять с текстом
+ * три различных операции: отсортировать абзацы по количеству предложений; в каждом предложении отсортировать
+ * слова по длине; отсортировать лексемы в предложении по убыванию количества вхождений заданного символа,
+ * а в случае равенства - по алфавиту.
+ */
 public class Task1 {
 
     static String nameInput = "text.txt";
-    static String paths = "tasks\\src\\main\\java\\";
+    static String paths = "E:\\java\\projects\\IntroductionToJava\\tasks\\src\\main\\java\\module3StringsAndBasicsOfTextProcessing\\regularExpression\\";
     static String outSortParagraphs = "out_sort_paragraphs.txt";
     static String outSortWordsOnSentence = "out_sort_words_on_sentence";
     static String outSortWordsByNumberOfOccurrences = "out_sort_words_by_number_of_occurrences";
@@ -30,7 +34,8 @@ public class Task1 {
         String message = "Input number of list\n" +
                 "1- Отсортировать абзацы по количеству предложений\n" +
                 "2- Отсортировать внутри предложения слова по длине\n" +
-                "3- Отсортировать лексемы в предложении по убыванию количества вхождений заданного символа, а в случае равенства - по алфавиту";
+                "3- Отсортировать лексемы в предложении по убыванию количества вхождений заданного символа, а в случае равенства - по алфавиту\n" +
+                "other- exit";
         String inputLetter = "Input letter for sorting words";
         String input = "";
 
@@ -42,22 +47,33 @@ public class Task1 {
             e.printStackTrace();
         }
 
-        int choice = getIntValue(message);
-        switch (choice) {
-            case 1:
+        while (true) {
+            int choice = getIntValue(message);
 
-                switch1(input);
-                break;
 
-            case 2:
+            switch (choice) {
+                case 1:
 
-                switch2(input);
-                break;
+                    switch1(input);
+                    System.out.println("Output to file- " + "out_sort_paragraphs.txt\n");
+                    break;
 
-            case 3:
-                String letter = getChar(inputLetter);
-                switch3(input, letter);
-                break;
+                case 2:
+
+                    switch2(input);
+                    System.out.println("Output to file- " + "out_sort_words_on_sentence.txt\n");
+
+                    break;
+
+                case 3:
+                    String letter = getChar(inputLetter);
+                    switch3(input, letter);
+                    System.out.println("Output to file- " + "out_sort_words_by_number_of_occurrences.txt\n");
+                    break;
+
+                default:
+                    System.exit(0);
+            }
         }
 
 
@@ -96,7 +112,7 @@ public class Task1 {
 
         for (int i = 0; i < sentences.length; i++) {
 
-            stringBuilderSentences.append(sortTokenByNumberOfOccurencesLetterDescending(sentences[i], letter));
+            stringBuilderSentences.append(sortTokenByNumberOfOccurrencesLetterDescending(sentences[i], letter));
             stringBuilderSentences.append(sentences[i].charAt(sentences[i].length() - 1));
             stringBuilderSentences.append("\n");
 
@@ -114,59 +130,11 @@ public class Task1 {
     }
 
 
-    private static String getString(String message) {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println(message);
-        while (true) {
-            if (scanner.hasNextLine()) {
-                return scanner.nextLine();
-            }
-        }
-    }
-
-    private static String getChar(String message) {
-        String s="ss";
-        Scanner scanner = new Scanner(System.in);
-        System.out.println(message);
-        while (s.length()!=1) {
-            if (scanner.hasNextLine()) {
-                s= scanner.nextLine();
-            }
-            if (s.length()!=1){
-                System.out.println("Input one char");
-            }
-        }
-        return s;
-    }
-
-    private static int getIntValue(String message) {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println(message);
-        while (true) {
-            if (scanner.hasNextInt()) {
-                return scanner.nextInt();
-            } else if (scanner.hasNext()) {
-                System.out.println("You have entered an invalid number, input real number");
-                scanner.next();
-            }
-        }
-
-    }
-
-    private static void printStringArray(String[] strings) {
-        for (int i = 0; i < strings.length; i++) {
-            System.out.println(strings[i]);
-        }
-        System.out.println();
-    }
-
-
     private static String[] splitOnParagraphs(String sInput) {
         return sInput.split("\n");
     }
 
     private static String[] splitOnSentences(String paragraphInput) {
-//        return paragraphInput.split("[!.?]");
         return paragraphInput.split("(?<=\\b[.!?])");
     }
 
@@ -190,10 +158,6 @@ public class Task1 {
         }
 
         return out;
-    }
-
-    private static char[] splitWordOnLetters(String wordInput) {
-        return wordInput.toCharArray();
     }
 
 
@@ -220,29 +184,6 @@ public class Task1 {
 
     }
 
-    private static int maxCountSentencesOnParagraphStartingAtIndex(String[] a, int start) {
-        int maxValue = countSentencesOnParagraph(a[start]);
-        int maxIndex = start;
-
-        if (a.length - 1 == start) {
-            return start;
-        }
-
-        for (int i = start + 1; i < a.length; i++) {
-            if (countSentencesOnParagraph(a[i]) > maxValue) {
-                maxValue = a[i].length();
-                maxIndex = i;
-            }
-        }
-
-        return maxIndex;
-    }
-
-    private static int countSentencesOnParagraph(String paragraph) {
-        return splitOnSentences(paragraph).length;
-    }
-
-
     private static String sortWordsInSentence(String text) {
         String[] sentences = splitOnSentences(text);
         StringBuilder sentencesWithSortWords = new StringBuilder();
@@ -262,7 +203,7 @@ public class Task1 {
                 }
 
                 if (j < words.length - 1) {
-                    sentencesWithSortWords.append(words[j] + " ");
+                    sentencesWithSortWords.append(words[j]).append(" ");
                 } else {
                     sentencesWithSortWords.append(words[j]);
                 }
@@ -276,27 +217,7 @@ public class Task1 {
 
     }
 
-    private static int maxLengthOfWordOnSentence(String[] words, int start) {
-        int maxValueLength = words[start].length();
-        int maxIndex = start;
-
-        if (words.length - 1 == start) {
-            return start;
-        }
-
-        for (int i = start + 1; i < words.length; i++) {
-            if (words[i].length() > maxValueLength) {
-                maxValueLength = words[i].length();
-                maxIndex = i;
-            }
-
-        }
-        return maxIndex;
-
-    }
-
-
-    private static String sortTokenByNumberOfOccurencesLetterDescending(String inputSentence, String inputLetter) {
+    private static String sortTokenByNumberOfOccurrencesLetterDescending(String inputSentence, String inputLetter) {
 
         StringBuilder sentenceOut = new StringBuilder();
         String[] words = splitSentenceOnWords(inputSentence);
@@ -353,10 +274,52 @@ public class Task1 {
         }
 
         for (String s : words) {
-            sentenceOut.append(s + " ");
+            sentenceOut.append(s).append(" ");
         }
 
         return sentenceOut.toString();
+    }
+
+
+    private static int maxCountSentencesOnParagraphStartingAtIndex(String[] a, int start) {
+        int maxValue = countSentencesOnParagraph(a[start]);
+        int maxIndex = start;
+
+        if (a.length - 1 == start) {
+            return start;
+        }
+
+        for (int i = start + 1; i < a.length; i++) {
+            if (countSentencesOnParagraph(a[i]) > maxValue) {
+                maxValue = a[i].length();
+                maxIndex = i;
+            }
+        }
+
+        return maxIndex;
+    }
+
+    private static int countSentencesOnParagraph(String paragraph) {
+        return splitOnSentences(paragraph).length;
+    }
+
+    private static int maxLengthOfWordOnSentence(String[] words, int start) {
+        int maxValueLength = words[start].length();
+        int maxIndex = start;
+
+        if (words.length - 1 == start) {
+            return start;
+        }
+
+        for (int i = start + 1; i < words.length; i++) {
+            if (words[i].length() > maxValueLength) {
+                maxValueLength = words[i].length();
+                maxIndex = i;
+            }
+
+        }
+        return maxIndex;
+
     }
 
     private static int countSearchLettersInWord(String word, String letter) {

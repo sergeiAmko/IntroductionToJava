@@ -4,7 +4,7 @@ public class Student {
     private String surname;
     private String initials;
     private int groupNumber;
-    private int[] learningAchievement = new int[5];
+    private int[] learningAchievement;
 
     public Student(String surname, String initials, int groupNumber, int[] learningAchievement) {
         this.surname = surname;

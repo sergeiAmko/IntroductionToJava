@@ -1,31 +1,29 @@
 package module2Algorithmization.oneDimensionalArray;
 
 import java.util.Arrays;
-import java.util.Scanner;
 
+import static module2Algorithmization.Service.*;
+
+
+/**
+ *Даны действительные числа а[1], а[2], а[3],..., а[n]. Поменять местами наибольший и наименьший элементы
+ */
 public class Task4 {
     public static void main(String[] args) {
 
-        int n = 0, maxIndex=0, minIndex=0;
+        int  maxIndex=0, minIndex=0;
         double max, min;
         double[] a, input;
-        Scanner scanner = new Scanner(System.in);
 
-        while (n <= 0) {
-            n = getIntValue(scanner, "Input the number of elements in the array ");
-        }
-        a = new double[n];
-        input = new double[n];
+        a=getArrayDouble("Input double array");
+        input = new double[a.length];
 
-        for (int i = 0; i < n; i++) {
-            a[i] = getDoubleValue(scanner, "Input the number 0");
-            input[i] = a[i];
-        }
+        System.arraycopy(a, 0, input, 0, a.length);
 
         max = a[0];
         min = a[0];
 
-        for (int i = 0; i < n; i++) {
+        for (int i = 0; i < a.length; i++) {
             if (a[i] > max) {
                 max = a[i];
                 maxIndex=i;
@@ -45,30 +43,4 @@ public class Task4 {
     }
 
 
-    private static int getIntValue(Scanner scanner, String message) {
-        System.out.println(message);
-        while (true) {
-            if (scanner.hasNextInt()) {
-                return scanner.nextInt();
-            } else if (scanner.hasNext()) {
-                System.out.println("You have entered an invalid number, input real number");
-                scanner.next();
-            }
-        }
-
-    }
-
-    private static double getDoubleValue(Scanner scanner, String message) {
-        System.out.println(message);
-        while (true) {
-            if (scanner.hasNextDouble()) {
-                return scanner.nextDouble();
-            } else if (scanner.hasNext()) {
-                System.out.println("You have entered an invalid number, input real number");
-                scanner.next();
-            }
-        }
-
-
-    }
 }

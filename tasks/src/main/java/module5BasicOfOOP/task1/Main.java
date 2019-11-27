@@ -1,7 +1,6 @@
 package module5BasicOfOOP.task1;
 
-import java.util.Scanner;
-
+import static module5BasicOfOOP.Service.*;
 
 /**
  * Создать объект класса Текстовый файл, используя классы Файл и Директория. Методы: создать,
@@ -10,7 +9,6 @@ import java.util.Scanner;
 public class Main {
 
     public static void main(String[] args) {
-
 
         int choice;
         File file;
@@ -31,11 +29,11 @@ public class Main {
         while (true) {
 
             choice = getIntValue(infoMenu);
-            System.err.println("You choice- "+choice);
+            System.err.println("You choice- " + choice);
             switch (choice) {
                 case 1:
 
-                    innerDirectory = choiceDirectory(directory, "Choice the directory");
+                    innerDirectory = choiceDirectory(directory);
                     String name = getStringValue("Input name of the file");
                     String content = getStringValue("Input content of the file");
                     Files.create(name, content, innerDirectory);
@@ -57,9 +55,9 @@ public class Main {
 
                 case 5:
 
-                    innerDirectory=choiceDirectory(directory, "Choice the directory");
-                    file=choiceFile(innerDirectory, "Choice the file");
-                    System.out.println("removal- "+Files.delete(innerDirectory,file));
+                    innerDirectory = choiceDirectory(directory);
+                    file = choiceFile(innerDirectory, "Choice the file");
+                    System.out.println("removal- " + Files.delete(innerDirectory, file));
                     break;
 
                 case 6:
@@ -77,71 +75,6 @@ public class Main {
 
     }
 
-    private static int getIntValue(String message) {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println(message);
-
-        while (true) {
-            int a;
-            if (scanner.hasNextInt()) {
-                a = scanner.nextInt();
-                return a;
-            } else if (scanner.hasNext()) {
-                System.out.println("You have entered an invalid number, input real number");
-                scanner.next();
-            }
-        }
-
-    }
-
-    private static int getIntValueWithLimit(String message, int startLimit, int endLimitInclude) {
-        Scanner scanner = new Scanner(System.in);
-
-        while (true) {
-            System.out.println(startLimit + " >= " + message + " <= " + endLimitInclude);
-            int a;
-            if (scanner.hasNextInt()) {
-                a = scanner.nextInt();
-                if (a >= startLimit && a <= endLimitInclude) {
-                    return a;
-                }
-            } else if (scanner.hasNext()) {
-                System.out.println("You have entered an invalid number, input real number");
-                scanner.next();
-            }
-        }
-
-    }
-
-    private static String getStringValue(String message) {
-        Scanner scanner = new Scanner(System.in);
-
-        System.out.println(message);
-
-        while (true) {
-            if (scanner.hasNext("\\D+")) {
-                return scanner.next("\\D+");
-            } else {
-                System.out.println("You have entered an invalid string, input string only letters");
-                scanner.next();
-            }
-        }
-    }
-
-    private static String getStringLine(String message) {
-        Scanner scanner = new Scanner(System.in);
-
-        System.out.println(message);
-
-        while (true) {
-            if (scanner.hasNextLine()) {
-                return scanner.nextLine();
-            } else {
-                System.out.println("You have entered an invalid string, input string only letters");
-                scanner.next();
-            }
-        }
-    }
 
     private static File choiceFile(Directory directory, String message) {
         int choice;
@@ -162,7 +95,7 @@ public class Main {
             }
             pos--;
 
-            choice = getIntValueWithLimit("Input the number", 1, pos);
+            choice = getIntValue("Input the number", 1, pos);
 
             if (choice <= middleDirectory.getDirectories().size()) {
                 middleDirectory = middleDirectory.getDirectories().get(choice - 1);
@@ -176,11 +109,11 @@ public class Main {
 
     }
 
-    private static Directory choiceDirectory(Directory directory, String message) {
+    private static Directory choiceDirectory(Directory directory) {
         int choice;
         Directory middleDirectory = directory;
 
-        System.out.println(message);
+        System.out.println("Choice the directory");
 
         while (true) {
 
@@ -193,7 +126,7 @@ public class Main {
             System.out.println(pos + "- return this directory");
 
 
-            choice = getIntValueWithLimit("Input the number", 1, pos);
+            choice = getIntValue("Input the number", 1, pos);
 
             if (choice < pos) {
                 middleDirectory = middleDirectory.getDirectories().get(choice - 1);

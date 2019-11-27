@@ -2,6 +2,18 @@ package module2Algorithmization.arraysOfArrays;
 
 import java.util.Scanner;
 
+
+/**
+ * Сформировать квадратную матрицу порядка n по заданному образцу (N- четное):
+ * 1    2     3    ...  n
+ * n  n-1   n-2    ...  1
+ * 1    2     3    ...  n
+ * n  n-1   n-2    ...  1
+ * .    .     .    ...  ...
+ * .    .     .    ...  ...
+ * .    .     .    ...  ...
+ * n  n-1   n-2    ...  1
+ */
 public class Task4 {
     public static void main(String[] args) {
         int n = 0;

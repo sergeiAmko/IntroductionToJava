@@ -1,7 +1,12 @@
 package module3StringsAndBasicsOfTextProcessing.stringIsObject;
 
-import java.util.Scanner;
+import static module3StringsAndBasicsOfTextProcessing.Service.getString;
 
+
+/**
+ * Строка X состоит из нескольких предложений, каждое из которых кончается точкой,
+ * восклицательным или вопросительным знаком. Определить количество предложений в строке X
+ */
 public class Task10 {
     public static void main(String[] args) {
         String a = "Input string";
@@ -12,15 +17,6 @@ public class Task10 {
 
     }
 
-    private static String getString(String message) {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println(message);
-        while (true) {
-            if (scanner.hasNextLine()) {
-                return scanner.nextLine();
-            }
-        }
-    }
 
     private static int countSentencesInString(String stringLine) {
         String[] strings = stringLine.split("\\.");
@@ -43,7 +39,6 @@ public class Task10 {
                 count++;
             }
         }
-
 
         return count;
     }

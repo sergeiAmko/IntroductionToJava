@@ -1,55 +1,24 @@
 package module2Algorithmization.arraysOfArrays;
 
-import java.util.Scanner;
+import module2Algorithmization.Service;
 
+
+/**
+ * Задана матрица неотрицательных чисел. Посчитать сумму элементов в каждом столбце.
+ * Определить, какой столбец содержит максимальную сумму.
+ */
 public class Task9 {
     public static void main(String[] args) {
         int[][] a;
-        String s = "Input array's size n-even  number";
+        String s = "Input array";
 
-        a = getArray(s);
+        a = Service.getDoubleArrayOfPositiveInt(s);
 
         System.out.println(maxIndexInArray(sumArray(a)));
 
 
     }
 
-
-    private static int getIntValue(Scanner scanner, String message) {
-        System.out.println(message);
-        while (true) {
-            if (scanner.hasNextInt()) {
-                return scanner.nextInt();
-            } else if (scanner.hasNext()) {
-                System.out.println("You have entered an invalid number, input real number");
-                scanner.next();
-            }
-        }
-
-    }
-
-    private static int[][] getArray(String s) {
-        int m = 0, n = 0;
-        int[][] a;
-
-        Scanner scanner = new Scanner(System.in);
-
-        while (m <= 0) {
-            m = getIntValue(scanner, s);
-        }
-
-        while (n <= 0) {
-            n = getIntValue(scanner, s);
-        }
-        a = new int[n][m];
-
-        for (int i = 0; i < n; i++) {
-            for (int j = 0; j < a[0].length; j++) {
-                a[i][j] = getIntValue(scanner, "Input the number " + i + "*" + j);
-            }
-        }
-        return a;
-    }
 
     private static int[] sumArray(int[][] a){
         int[]sumArray = new int[a.length];

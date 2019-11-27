@@ -1,9 +1,11 @@
 package module1BasicOfSoftwareCodeDevelopment.cycles;
 
-import java.util.Scanner;
+import static java.lang.Math.pow;
 
-import static java.lang.Math.*;
 
+/**
+ * Найти сумму квадратов первых ста чисел
+ */
 public class Task3 {
     public static void main(String[] args) {
         int sum = 0, a = 100;

@@ -1,12 +1,19 @@
 package module2Algorithmization.oneDimensionalArray;
 
 import java.util.Arrays;
-import java.util.Scanner;
 
+import static module2Algorithmization.Service.getArrayInt;
+
+
+/**
+ * Дан целочисленный массив с количеством элементов n. Сжать массив,
+ * выбросив из него каждый второй элемент (освободившиеся элементы заполнить нулями).
+ * Примечание: дополнительный массив не искользовать
+ */
 public class Task10 {
     public static void main(String[] args) {
 
-        int[] a = getArray("Input the number of elements in the  array");
+        int[] a = getArrayInt("Input array:");
 
         System.out.println("new massive- " + Arrays.toString(removeOnZero(a)));
 
@@ -14,41 +21,19 @@ public class Task10 {
     }
 
     private static int[] removeOnZero(int[] ints) {
+        int k = 1;
         for (int i = 0; i < ints.length; i++) {
-            if (i == 0 || i % 2 == 0) {
-                ints[i] = 0;
+            if (i % 2 != 0 && i != ints.length - 1) {
+                ints[k] = ints[i + 1];
+                k++;
             }
+        }
+
+        for (int i = k; i < ints.length; i++) {
+            ints[i] = 0;
         }
         return ints;
     }
 
-    private static int getIntValue(Scanner scanner, String message) {
-        System.out.println(message);
-        while (true) {
-            if (scanner.hasNextInt()) {
-                return scanner.nextInt();
-            } else if (scanner.hasNext()) {
-                System.out.println("You have entered an invalid number, input real number");
-                scanner.next();
-            }
-        }
 
-    }
-
-    private static int[] getArray(String s) {
-        int n = 0;
-        int[] a;
-
-        Scanner scanner = new Scanner(System.in);
-
-        while (n <= 0) {
-            n = getIntValue(scanner, s);
-        }
-        a = new int[n];
-
-        for (int i = 0; i < n; i++) {
-            a[i] = getIntValue(scanner, "Input the number " + i);
-        }
-        return a;
-    }
 }

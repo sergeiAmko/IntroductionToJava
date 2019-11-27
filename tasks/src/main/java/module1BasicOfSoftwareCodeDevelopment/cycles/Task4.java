@@ -2,9 +2,13 @@ package module1BasicOfSoftwareCodeDevelopment.cycles;
 
 import static java.lang.Math.pow;
 
+
+/**
+ * Составить программу нахождения произведения квадратов первых двухсот чисел
+ */
 public class Task4 {
     public static void main(String[] args) {
-        long product = 1, a = 100;
+        long product = 1, a = 200;
         for (int i = 1; i <= a; i++) {
             product *= pow(i, 2);
         }

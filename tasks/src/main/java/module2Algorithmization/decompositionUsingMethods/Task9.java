@@ -1,27 +1,22 @@
 package module2Algorithmization.decompositionUsingMethods;
 
-import java.util.Scanner;
+import static module2Algorithmization.Service.getPositiveIntValue;
 
+
+/**
+ * Даны числа X,Y,Z,T - длины сторон четырехугольника. Написать метод вычисления его площади,
+ * если угол между сторонами длиной X и Y - прямой.
+ */
 public class Task9 {
 
     public static void main(String[] args) {
-        int x = 0, y = 0, z = 0, t = 0;
+        int x, y, z, t;
         String s = "Input side ";
 
-        while (x <= 0) {
-            x = getIntValue(s + "x");
-        }
-
-        while (y <= 0) {
-            y = getIntValue(s + "y");
-        }
-        while (z <= 0) {
-            z = getIntValue(s + "z");
-        }
-
-        while (t <= 0) {
-            t = getIntValue(s + "t");
-        }
+        x = getPositiveIntValue(s + "x");
+        y = getPositiveIntValue(s + "y");
+        z = getPositiveIntValue(s + "z");
+        t = getPositiveIntValue(s + "t");
 
         System.out.println(areaOfQuadrilateral(x, y, z, t));
 
@@ -34,19 +29,5 @@ public class Task9 {
 
     }
 
-    private static int getIntValue(String message) {
-        Scanner scanner = new Scanner(System.in);
-
-        System.out.println(message);
-        while (true) {
-            if (scanner.hasNextInt()) {
-                return scanner.nextInt();
-            } else if (scanner.hasNext()) {
-                System.out.println("You have entered an invalid number, input real number");
-                scanner.next();
-            }
-        }
-
-    }
 
 }

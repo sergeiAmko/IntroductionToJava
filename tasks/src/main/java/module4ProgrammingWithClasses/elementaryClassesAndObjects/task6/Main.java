@@ -1,7 +1,14 @@
 package module4ProgrammingWithClasses.elementaryClassesAndObjects.task6;
 
-import java.util.Scanner;
 
+import static module4ProgrammingWithClasses.Service.getIntValue;
+
+/**
+ * Составьте описание класса для представления времени. Предусмотрте возможности установки
+ * времени и изменения его отдельных полей (час, минута, секунда) с проверкой допустимости
+ * вводимых значений. В случае недопустимых значений полей поле устанавливается в значение 0.
+ * Создать методы изменения времени на заданное количество часов, минут и секунд.
+ */
 public class Main {
     public static void main(String[] args) {
         int inner;
@@ -21,19 +28,14 @@ public class Main {
 
         howSetClock = getIntValue(createTime);
 
-        switch (howSetClock) {
-            case 1:
-                int hours = getIntValue(strHours);
-                int minutes = getIntValue(strMinutes);
-                int seconds = getIntValue(strSeconds);
+        if (howSetClock == 1) {
+            int hours = getIntValue(strHours);
+            int minutes = getIntValue(strMinutes);
+            int seconds = getIntValue(strSeconds);
 
-                clock = new Clock(hours, minutes, seconds);
-                break;
-
-            default:
-                clock = new Clock();
-                break;
-
+            clock = new Clock(hours, minutes, seconds);
+        } else {
+            clock = new Clock();
         }
 
         clock.printClock();
@@ -68,7 +70,7 @@ public class Main {
                     int intervalSeconds = getIntValue("Input interval seconds>0");
 
                     while (intervalSeconds < 0) {
-                        intervalSeconds= getIntValue("Input interval seconds>0");
+                        intervalSeconds = getIntValue("Input interval seconds>0");
 
                     }
 
@@ -81,20 +83,6 @@ public class Main {
             }
         }
 
-
-    }
-
-    private static int getIntValue(String message) {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println(message);
-        while (true) {
-            if (scanner.hasNextInt()) {
-                return scanner.nextInt();
-            } else if (scanner.hasNext()) {
-                System.out.println("You have entered an invalid number, input real number");
-                scanner.next();
-            }
-        }
 
     }
 

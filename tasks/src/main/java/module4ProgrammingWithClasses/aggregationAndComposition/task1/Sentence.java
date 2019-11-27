@@ -5,15 +5,15 @@ import java.util.List;
 
 public class Sentence {
 
-    private List<Word> words=new ArrayList<>();
+    private List<Word> words = new ArrayList<>();
 
     public Sentence(List<Word> innerSentence) {
-        if (innerSentence!=null){
+        if (innerSentence != null) {
             this.words = innerSentence;
         }
     }
 
-    public Sentence(){
+    public Sentence() {
 
     }
 
@@ -25,16 +25,16 @@ public class Sentence {
     @Override
     public String toString() {
 
-        StringBuffer stringBuffer = new StringBuffer();
+        StringBuilder stringBuilder = new StringBuilder();
         for (int i = 0; i < words.size(); i++) {
-            stringBuffer.append(words.get(i) + " ");
+            stringBuilder.append(words.get(i)).append(" ");
         }
 
-        return stringBuffer.toString();
+        return stringBuilder.toString();
     }
 
     public void add(List<Word> words) {
-        if (words!=null){
+        if (words != null) {
             this.words.addAll(words);
         }
     }

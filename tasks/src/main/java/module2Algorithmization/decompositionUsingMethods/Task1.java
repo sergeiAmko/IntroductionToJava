@@ -1,7 +1,13 @@
 package module2Algorithmization.decompositionUsingMethods;
 
-import java.util.Scanner;
+import static module2Algorithmization.Service.getIntValue;
 
+
+/**
+ * Написать методы (методы) для нахождения наибольшего общего делителя и наименьшего общего
+ * кратного двуч натуральных чисел:
+ * НОК(А,В)= А*В / НОД(А,В)
+ */
 public class Task1 {
 
     public static void main(String[] args) {
@@ -9,35 +15,22 @@ public class Task1 {
         String sA = "Input the A ";
         String sB = "Input the B ";
 
-        Scanner scanner = new Scanner(System.in);
 
-        a = getIntValue(scanner, sA);
-        b = getIntValue(scanner, sB);
+        a = getIntValue(sA);
+        b = getIntValue(sB);
 
-        System.out.println("НОД " + a + " и " + b + "= " + gcd(a, b));
-        System.out.println("НОК " + a + " и " + b + "= " + lcm(a, b));
+        System.out.println("НОД " + a + " и " + b + "= " + nod(a, b));
+        System.out.println("НОК " + a + " и " + b + "= " + nok(a, b));
 
-
-    }
-
-    private static int getIntValue(Scanner scanner, String message) {
-        System.out.println(message);
-        while (true) {
-            if (scanner.hasNextInt()) {
-                return scanner.nextInt();
-            } else if (scanner.hasNext()) {
-                System.out.println("You have entered an invalid number, input real number");
-                scanner.next();
-            }
-        }
 
     }
 
-    private static long gcd(long a, long b) {
-        return b == 0 ? a : gcd(b, a % b);
+
+    private static long nod(long a, long b) {
+        return b == 0 ? a : nod(b, a % b);
     }
 
-    private static long lcm(long a, long b) {
-        return a / gcd(a, b) * b;
+    private static long nok(long a, long b) {
+        return a / nod(a, b) * b;
     }
 }

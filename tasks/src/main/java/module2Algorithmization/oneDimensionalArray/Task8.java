@@ -1,23 +1,20 @@
 package module2Algorithmization.oneDimensionalArray;
 
 import java.util.Arrays;
-import java.util.Scanner;
 
+import static module2Algorithmization.Service.getArrayInt;
+
+
+/**
+ * Дана последовательность целых чисел а[1], а[2], а[3],..., а[n]. Образовать новую последовательность,
+ * выбрасив из исходной те члены, которые равны min(а[1], а[2], а[3],..., а[n]).
+ */
 public class Task8 {
     public static void main(String[] args) {
-        int n = 0;
         int[] a;
 
-        Scanner scanner = new Scanner(System.in);
+        a = getArrayInt("Input array");
 
-        while (n <= 0) {
-            n = getIntValue(scanner, "Input  the number of elements in the array");
-        }
-        a = new int[n];
-
-        for (int i = 0; i < n; i++) {
-            a[i] = getIntValue(scanner, "Input the number 0");
-        }
 
         System.out.println("array after remove- " + Arrays.toString(remove(a, min(a))));
     }
@@ -25,8 +22,8 @@ public class Task8 {
     private static int[] remove(int[] massive, double removable) {
         int[] output;
         int count = 0;
-        for (int i = 0; i < massive.length; i++) {
-            if (massive[i] == removable) {
+        for (int value : massive) {
+            if (value == removable) {
                 count++;
             }
         }
@@ -38,9 +35,9 @@ public class Task8 {
         output = new int[massive.length - count];
         int iOutput = 0;
 
-        for (int i = 0; i < massive.length; i++) {
-            if (massive[i] != removable) {
-                output[iOutput] = massive[i];
+        for (int value : massive) {
+            if (value != removable) {
+                output[iOutput] = value;
                 iOutput++;
             }
         }
@@ -52,25 +49,13 @@ public class Task8 {
 
     private static int min(int[] massive) {
         int min = massive[0];
-        for (int i = 0; i < massive.length; i++) {
-            if (massive[i] < min) {
-                min = massive[i];
+        for (int value : massive) {
+            if (value < min) {
+                min = value;
             }
         }
         return min;
     }
 
-    private static int getIntValue(Scanner scanner, String message) {
-        System.out.println(message);
-        while (true) {
-            if (scanner.hasNextInt()) {
-                return scanner.nextInt();
-            } else if (scanner.hasNext()) {
-                System.out.println("You have entered an invalid number, input real number");
-                scanner.next();
-            }
-        }
-
-    }
 
 }

@@ -1,7 +1,13 @@
 package module4ProgrammingWithClasses.aggregationAndComposition.task1;
 
-import java.util.Scanner;
+import static module2Algorithmization.Service.getIntValue;
+import static module4ProgrammingWithClasses.Service.getStringValueWithoutNumbers;
 
+
+/**
+ * Создать объект класса Текст, используя классы Предложение, Слово.
+ * Методы: дополнить текст, вывести на консоль текст, заголовок текста.
+ */
 public class Main {
 
     public static void main(String[] args) {
@@ -16,18 +22,18 @@ public class Main {
         String infoCountWordsInSentence = "Input the number of words";
         String infoWord = "Input the word";
 
-        Text text = new Text(getStringValue(infoTitle));
+        Text text = new Text(getStringValueWithoutNumbers(infoTitle));
 
         while (true) {
 
-            choice = (int) getLongValue(infoMenu);
+            choice = getIntValue(infoMenu);
 
             switch (choice) {
                 case 1:
-                    int count = (int) getLongValue(infoCountWordsInSentence);
+                    int count = getIntValue(infoCountWordsInSentence);
                     Sentence sentence = new Sentence();
                     for (int i = 0; i < count; i++) {
-                        sentence.add(new Word(getStringValue(infoWord)));
+                        sentence.add(new Word(getStringValueWithoutNumbers(infoWord)));
                     }
 
                     text.add(sentence);
@@ -57,35 +63,5 @@ public class Main {
 
     }
 
-    private static long getLongValue(String message) {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println(message);
 
-        while (true) {
-            long a;
-            if (scanner.hasNextLong()) {
-                a = scanner.nextLong();
-                return a;
-            } else if (scanner.hasNext()) {
-                System.out.println("You have entered an invalid number, input real number");
-                scanner.next();
-            }
-        }
-
-    }
-
-    private static String getStringValue(String message) {
-        Scanner scanner = new Scanner(System.in);
-
-        System.out.println(message);
-
-        while (true) {
-            if (scanner.hasNext("\\D+")) {
-                return scanner.next("\\D+");
-            } else {
-                System.out.println("You have entered an invalid string, input string only letters");
-                scanner.next();
-            }
-        }
-    }
 }

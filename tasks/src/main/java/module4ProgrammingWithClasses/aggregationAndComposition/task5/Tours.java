@@ -13,10 +13,17 @@ public class Tours {
 
     private List<Tour> tours = new ArrayList<>();
 
-    public Tours() {
-        Path pathSource = Paths.get("E:\\java\\projects\\IntroductionToJava\\tasks\\src\\main\\java",
-                "module4ProgrammingWithClasses\\aggregationAndComposition\\task5\\source.txt");
+    Path pathSource = Paths.get("tasks\\src\\main\\java",
+            "module4ProgrammingWithClasses\\aggregationAndComposition\\task5\\sourceBook.txt");
 
+
+    public Tours() {
+
+        create();
+
+    }
+
+    private void create() {
 
         try (BufferedReader bufferedReader = Files.newBufferedReader(pathSource)) {
 
@@ -29,7 +36,7 @@ public class Tours {
                 List<String> cities;
                 Type type;
                 List<Transport> transports = new ArrayList<>();
-                List<Food> foods=new ArrayList<>();
+                List<Food> foods = new ArrayList<>();
                 int countDay;
                 double cost;
 
@@ -44,13 +51,13 @@ public class Tours {
                 type = Type.valueOf(sSplit[3].trim());
 
                 String[] transportMassive = sSplit[4].split("\\s+");
-                for (int i = 0; i < transportMassive.length; i++) {
-                    transports.add(Transport.valueOf(transportMassive[i].trim()));
+                for (String item : transportMassive) {
+                    transports.add(Transport.valueOf(item.trim()));
                 }
 
                 String[] foodMassive = sSplit[5].split("\\s+");
-                for (int i = 0; i < foodMassive.length; i++) {
-                    foods.add(Food.valueOf(foodMassive[i].trim()));
+                for (String value : foodMassive) {
+                    foods.add(Food.valueOf(value.trim()));
                 }
 
                 countDay = Integer.valueOf(sSplit[6]);
@@ -61,9 +68,6 @@ public class Tours {
 
 
             }
-
-
-
 
 
         } catch (IOException e) {
@@ -108,8 +112,8 @@ public class Tours {
             }
         }
 
-        tours=returned;
-        return tours;
+        tours = returned;
+        return returned;
     }
 
     public static List<Tour> getToursByFoods(List<Tour> tours, Food food) {
@@ -117,8 +121,8 @@ public class Tours {
         List<Tour> returned = new ArrayList<>();
 
         for (Tour tour : tours) {
-            if (!tour.getFoods().contains(food)) {
-                returned.remove(tour);
+            if (tour.getFoods().contains(food)) {
+                returned.add(tour);
             }
         }
 

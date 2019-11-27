@@ -1,28 +1,23 @@
 package module3StringsAndBasicsOfTextProcessing.stringIsObject;
 
-import java.util.Scanner;
+import static module3StringsAndBasicsOfTextProcessing.Service.getStringValue;
 
+
+/**
+ * Проверить, является ли заданное слово палиндромом
+ */
 public class Task3 {
     public static void main(String[] args) {
 
         String s = "Input string";
-        String a = getString(s);
+        String a = getStringValue("Input word= " + s);
 
-        System.out.println(isPalindrom(a));
+        System.out.println(isPalindrome(a));
 
     }
 
-    private static String getString(String message) {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println(message);
-        while (true) {
-            if (scanner.hasNextLine()) {
-                return scanner.nextLine();
-            }
-        }
-    }
 
-    private static boolean isPalindrom(String s){
+    private static boolean isPalindrome(String s) {
         return s.equalsIgnoreCase(new StringBuilder(s).reverse().toString());
     }
 }

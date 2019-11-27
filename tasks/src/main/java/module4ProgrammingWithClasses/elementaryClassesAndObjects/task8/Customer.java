@@ -1,7 +1,7 @@
 package module4ProgrammingWithClasses.elementaryClassesAndObjects.task8;
 
 public class Customer {
-    private static long staticId=0;
+    private static long staticId = 0;
 
     private long id;
     private String firstName;

@@ -11,7 +11,7 @@ public class Test2 {
     }
 
     public Test2() {
-        this(2,3);
+        this(2, 3);
     }
 
     public int getA() {

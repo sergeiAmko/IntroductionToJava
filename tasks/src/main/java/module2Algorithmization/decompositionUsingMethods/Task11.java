@@ -1,47 +1,36 @@
 package module2Algorithmization.decompositionUsingMethods;
 
-import java.util.Arrays;
-import java.util.Scanner;
+import static module2Algorithmization.Service.getLongValue;
 
+
+/**
+ * Написать метод (методы), определяющий, в каком из даннх двух чисел больше цифр
+ */
 public class Task11 {
 
-        public static void main(String[] args) {
-            long a, b;
-            String s = "Input numer";
+    public static void main(String[] args) {
+        long a, b;
+        String s = "Input number";
 
-            a = getIntValue(s + " a");
-            b = getIntValue(s + " b");
+        a = getLongValue(s + " a");
+        b = getLongValue(s + " b");
 
-            System.out.println(compareElements(a, b));
+        System.out.println(compareElements(a, b));
+    }
+
+
+    private static long compareElements(long a, long b) {
+        return countElements(a) > countElements(b) ? a : b;
+    }
+
+    private static int countElements(long a) {
+        int count = 0;
+        long b = a;
+        while (b > 0) {
+            b = b / 10;
+            count++;
         }
-
-        private static long getIntValue(String message) {
-            Scanner scanner = new Scanner(System.in);
-
-            System.out.println(message);
-            while (true) {
-                if (scanner.hasNextLong()) {
-                    return scanner.nextLong();
-                } else if (scanner.hasNext()) {
-                    System.out.println("You have entered an invalid number, input real number");
-                    scanner.next();
-                }
-            }
-
-        }
-
-        private static long compareElements(long a, long b) {
-            return countElements(a) > countElements(b) ? a : b;
-        }
-
-        private static int countElements(long a) {
-            int count = 0;
-            long b = a;
-            while (b > 0) {
-                b = b / 10;
-                count++;
-            }
-            return count;
-        }
+        return count;
+    }
 
 }

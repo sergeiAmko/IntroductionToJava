@@ -1,35 +1,29 @@
 package module2Algorithmization.oneDimensionalArray;
 
 import java.util.Arrays;
-import java.util.Scanner;
 
+import static module2Algorithmization.Service.getArrayInt;
+import static module2Algorithmization.Service.getIntValue;
+
+
+/**
+ * В массив A[N] занесены натуральные числа.
+ * Найти сумму тех эелементов, которые кратны данному К.
+ */
 public class Task1 {
     public static void main(String[] args) {
 
-        int n = 0, k, p = 0, sum = 0;
+        int  k, sum = 0;
         int[] a;
-        Scanner scanner = new Scanner(System.in);
 
-        while (n <= 0) {
-            n = getIntValue(scanner, "Input the number of elements in the array >0");
-        }
-        a = new int[n];
-
-        for (int i = 0; i < n; i++) {
-            while (p <= 0) {
-                p = getIntValue(scanner, "Input the number >0");
-            }
-
-            a[i] = p;
-            p = 0;
-
-        }
+        a = getArrayInt("Input the array");
 
         System.out.println("_________________________________________________________");
-        k = getIntValue(scanner, "Input k");
+
+        k = getIntValue("Input k");
 
 
-        for (int i = 0; i < n; i++) {
+        for (int i = 0; i < a.length; i++) {
             if (a[i] % k == 0) {
                 sum += a[i];
             }
@@ -41,16 +35,5 @@ public class Task1 {
 
     }
 
-    private static int getIntValue(Scanner scanner, String message) {
-        System.out.println(message);
-        while (true) {
-            if (scanner.hasNextInt()) {
-                return scanner.nextInt();
-            } else if (scanner.hasNext()) {
-                System.out.println("You have entered an invalid number, input real number");
-                scanner.next();
-            }
-        }
 
-    }
 }

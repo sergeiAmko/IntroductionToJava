@@ -1,18 +1,26 @@
 package module2Algorithmization.arraysOfArrays;
 
-import java.util.Random;
 import java.util.Scanner;
 
+
+/**
+ * Магическим квадратом порядка n называется квадратная матрица n*n, составленная из чисел
+ * 1,2,3...,n*n, что суммы по каждому столбцу, каждой строке и каждой из двух больших диагоналей
+ * равны между собой. Построить такой квадрат. Пример магического квадрата порядка 3:
+ * 6 1 8
+ * 7 5 3
+ * 2 9 4
+ */
 public class Task16 {
     public static void main(String[] args) {
-        int[][]a;
-        int n=0;
-        String s="Input size array n";
+        int[][] a;
+        int n = 0;
+        String s = "Input size array n";
 
-        Scanner scanner=new Scanner((System.in));
-        n=getIntValue(scanner,s);
+        Scanner scanner = new Scanner((System.in));
+        n = getIntValue(scanner, s);
 
-        a=new int[n][n];
+        a = new int[n][n];
 //        System.out.println(sumForNumber(n));
     }
 
@@ -58,15 +66,15 @@ public class Task16 {
 //
 //    }
 
-    private static int sumForNumber(int n){
+    private static int sumForNumber(int n) {
 
-        return (int)(n*(Math.pow(n,2)+1))/2;
+        return (int) (n * (Math.pow(n, 2) + 1)) / 2;
     }
 
-    private static int[] createLinearArray(int n){
-        int[] a=new int[n*n];
+    private static int[] createLinearArray(int n) {
+        int[] a = new int[n * n];
         for (int i = 0; i < n * n; i++) {
-            a[i]=i+1;
+            a[i] = i + 1;
         }
         return a;
     }

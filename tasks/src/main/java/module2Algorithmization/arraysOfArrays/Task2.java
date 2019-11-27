@@ -1,11 +1,15 @@
 package module2Algorithmization.arraysOfArrays;
 
-import java.util.Scanner;
+import static module2Algorithmization.Service.getDoubleSquareArray;
 
+
+/**
+ * Дана квадратная матрица. Вывести на экран элементы, стоящие на диагонали.
+ */
 public class Task2 {
 
     public static void main(String[] args) {
-        int[][] a=getSquareArray("Input size n array");
+        int[][] a= getDoubleSquareArray("Input size n array");
 
 
         for (int i = 0; i < a.length; i++) {
@@ -14,36 +18,7 @@ public class Task2 {
 
     }
 
-    private static int getIntValue(Scanner scanner, String message) {
-        System.out.println(message);
-        while (true) {
-            if (scanner.hasNextInt()) {
-                return scanner.nextInt();
-            } else if (scanner.hasNext()) {
-                System.out.println("You have entered an invalid number, input real number");
-                scanner.next();
-            }
-        }
-
-    }
-
-    private static int[][] getSquareArray(String s) {
-        int n = 0;
-        int[][] a;
-
-        Scanner scanner = new Scanner(System.in);
 
 
-        while (n <= 0) {
-            n = getIntValue(scanner, s);
-        }
-        a = new int[n][n];
 
-        for (int i = 0; i < n; i++) {
-            for (int j = 0; j < n; j++) {
-                a[i][j] = getIntValue(scanner, "Input the number " + i + "*" + j);
-            }
-        }
-        return a;
-    }
 }

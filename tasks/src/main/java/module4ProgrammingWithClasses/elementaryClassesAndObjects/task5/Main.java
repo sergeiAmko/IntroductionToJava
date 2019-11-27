@@ -1,7 +1,15 @@
 package module4ProgrammingWithClasses.elementaryClassesAndObjects.task5;
 
-import java.util.Scanner;
+import static module4ProgrammingWithClasses.Service.getIntValue;
 
+
+/**
+ * Опишите класс, реализующий десятичный счетчик, который может увеличивать или уменьшать
+ * свое значение на единицу в заданном диапазоне. Предусмотрите инициализацию счетчика
+ * значениями по умолчанию и произвольными значениями. Счетчик имеет методы увеличения
+ * и уменьшения состояния, и метод позволяющее получить его текущее состояние. Написать
+ * код, демонстрирующий все возможности класса.
+ */
 public class Main {
     public static void main(String[] args) {
         int inner;
@@ -19,20 +27,26 @@ public class Main {
         String strParameter2 = "Input lower limit value";
         String strParameter3 = "Input upper limit value";
 
-        kindCounter = getIntValue(creatCounter);
+        while (true) {
 
-        switch (kindCounter) {
-            case 1:
+            kindCounter = getIntValue(creatCounter);
+
+            if (kindCounter == 1) {
                 int par1 = getIntValue(strParameter1);
                 int par2 = getIntValue(strParameter2);
                 int par3 = getIntValue(strParameter3);
 
-                counter = new Counter(par1, par2, par3);
-                break;
-            default:
+                try {
+                    counter = new Counter(par1, par2, par3);
+                    break;
+
+                } catch (IllegalArgumentException e) {
+                    System.err.println(e.getMessage());
+                }
+            } else {
                 counter = new Counter();
                 break;
-
+            }
         }
 
 
@@ -51,20 +65,6 @@ public class Main {
                     break;
                 case 4:
                     System.exit(0);
-            }
-        }
-
-    }
-
-    private static int getIntValue(String message) {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println(message);
-        while (true) {
-            if (scanner.hasNextInt()) {
-                return scanner.nextInt();
-            } else if (scanner.hasNext()) {
-                System.out.println("You have entered an invalid number, input real number");
-                scanner.next();
             }
         }
 

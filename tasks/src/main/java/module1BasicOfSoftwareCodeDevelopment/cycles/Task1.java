@@ -1,13 +1,17 @@
 package module1BasicOfSoftwareCodeDevelopment.cycles;
 
-import java.util.Scanner;
+import static module1BasicOfSoftwareCodeDevelopment.Service.getIntValue;
 
+
+/**
+ * Напишите программу, где пользователь вводит любое целое положительное число.
+ * А программа суммирует все числа от 1 до введенного пользователем числа.
+ */
 public class Task1 {
     public static void main(String[] args) {
         int n, sum = 0;
-        Scanner scanner = new Scanner(System.in);
 
-        n = getIntValue(scanner, "Input real number");
+        n = getIntValue("Input real number");
 
         for (int i = 0; i <= n; i++) {
             sum += i;
@@ -18,16 +22,4 @@ public class Task1 {
 
     }
 
-    private static int getIntValue(Scanner scanner, String message) {
-        System.out.println(message);
-        while (true) {
-            if (scanner.hasNextInt()) {
-                return scanner.nextInt();
-            } else if (scanner.hasNext()) {
-                System.out.println("You have entered an invalid number, input real number");
-                scanner.next();
-            }
-        }
-
-    }
 }

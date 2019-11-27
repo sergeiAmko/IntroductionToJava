@@ -1,35 +1,30 @@
 package module3StringsAndBasicsOfTextProcessing.stringIsObject;
 
-import java.util.Scanner;
+import static module3StringsAndBasicsOfTextProcessing.Service.getString;
 
+
+/**
+ * Дан текст (строка). Найдите наибольшее количество подряд идущих пробелов в нем.
+ */
 public class Task1 {
     public static void main(String[] args) {
 
         String s = "Input string";
         String a = getString(s);
 
-        System.out.println(countConsecutiveGaps(a));
+        System.out.println("Maximum number of consecutive spaces= " + countConsecutiveGaps(a));
     }
 
-    private static String getString(String message) {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println(message);
-        while (true) {
-            if (scanner.hasNextLine()) {
-                return scanner.nextLine();
-            }
-        }
-    }
 
     private static int countConsecutiveGaps(String s) {
 
-        int maxindex = 0;
+        int maxIndex = 0;
         int maxCount = 0;
         int count = 1;
 
-        while (s.indexOf(' ', maxindex+1) != -1) {
+        while (s.indexOf(' ', maxIndex + 1) != -1) {
 
-            if (s.indexOf(' ', maxindex+1) - maxindex == 1) {
+            if (s.indexOf(' ', maxIndex + 1) - maxIndex == 1) {
                 count++;
                 if (count > maxCount) {
                     maxCount = count;
@@ -38,7 +33,7 @@ public class Task1 {
                 count = 1;
             }
 
-            maxindex = s.indexOf(' ', maxindex+1);
+            maxIndex = s.indexOf(' ', maxIndex + 1);
         }
         return maxCount;
 

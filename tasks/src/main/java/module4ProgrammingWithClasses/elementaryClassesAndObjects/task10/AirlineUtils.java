@@ -1,10 +1,7 @@
 package module4ProgrammingWithClasses.elementaryClassesAndObjects.task10;
 
-import module4ProgrammingWithClasses.elementaryClassesAndObjects.task9.Book;
-
 import java.time.DayOfWeek;
 import java.time.LocalTime;
-import java.util.Arrays;
 
 public class AirlineUtils {
     private Airline[] airlines;
@@ -22,9 +19,7 @@ public class AirlineUtils {
         if (count == airlines.length) {
             Airline[] middleAirlines= new Airline[airlines.length * 2];
 
-            for (int i = 0; i < airlines.length; i++) {
-                middleAirlines[i] = airlines[i];
-            }
+            System.arraycopy(airlines, 0, middleAirlines, 0, airlines.length);
 
             airlines = middleAirlines;
 
@@ -69,9 +64,9 @@ public class AirlineUtils {
         for (int i = 0; i < count; i++) {
             DayOfWeek[] daysOfWeek = airlines[i].getDaysOfWeek();
 
-            for (int j = 0; j < daysOfWeek.length; j++) {
-                if (daysOfWeek[j]==searchDayOfWeek){
-                    searchedAirlines[countSearchAirlines++]=airlines[i];
+            for (DayOfWeek dayOfWeek : daysOfWeek) {
+                if (dayOfWeek == searchDayOfWeek) {
+                    searchedAirlines[countSearchAirlines++] = airlines[i];
                     break;
                 }
 

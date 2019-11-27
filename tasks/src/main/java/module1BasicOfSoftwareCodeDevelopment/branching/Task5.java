@@ -1,16 +1,21 @@
 package module1BasicOfSoftwareCodeDevelopment.branching;
 
-import java.util.Scanner;
+import static java.lang.Math.pow;
+import static module1BasicOfSoftwareCodeDevelopment.Service.getIntValue;
 
-import static java.lang.Math.*;
 
+/**
+ * Вычислить значение функции
+ *     =x*x - 3x +9, если x<=3
+ * F(x)
+ *     =1/(x*x*x + 6), если x>3
+ */
 public class Task5 {
     public static void main(String[] args) {
         int x;
         double f;
-        Scanner scanner = new Scanner(System.in);
 
-        x = getIntValue(scanner, "Input real number x");
+        x = getIntValue("Input real number x");
 
         if (x <= 3) {
             f = pow(x, 2) - 3 * x + 9;
@@ -21,16 +26,4 @@ public class Task5 {
         System.out.println("f= " + f);
     }
 
-    private static int getIntValue(Scanner scanner, String message) {
-        System.out.println(message);
-        while (true) {
-            if (scanner.hasNextInt()) {
-                return scanner.nextInt();
-            } else if (scanner.hasNext()) {
-                System.out.println("You have entered an invalid number, input real number");
-                scanner.next();
-            }
-        }
-
-    }
 }

@@ -1,11 +1,14 @@
 package module2Algorithmization.arraysOfArrays;
 
-import java.util.Arrays;
-import java.util.Scanner;
+import static module2Algorithmization.Service.getDoubleArrayOfInt;
 
+
+/**
+ * Дана матрица. Вывести на экран все нечетные столбцы, у которых первый элемент больше последнего
+ */
 public class Task1 {
     public static void main(String[] args) {
-        int[][] a = getArray("Input the number m*n");
+        int[][] a = getDoubleArrayOfInt("Input the double array");
 
         int columnCount = a[0].length;
         int rowCount = a.length;
@@ -26,61 +29,15 @@ public class Task1 {
         int[][] finish = new int[neww.length][count];
 
         for (int i = 0; i < neww.length; i++) {
-            for (int j = 0; j < count; j++) {
-                finish[i][j] = neww[i][j];
-            }
+            if (count >= 0) System.arraycopy(neww[i], 0, finish[i], 0, count);
         }
 
-        for (int i = 0; i < finish.length; i++) {
+        for (int[] ints : finish) {
             for (int j = 0; j < count; j++) {
-                System.out.print(finish[i][j] + " ");
+                System.out.print(ints[j] + " ");
             }
             System.out.println();
         }
     }
 
-    private static int getIntValue(Scanner scanner, String message) {
-        System.out.println(message);
-        while (true) {
-            if (scanner.hasNextInt()) {
-                return scanner.nextInt();
-            } else if (scanner.hasNext()) {
-                System.out.println("You have entered an invalid number, input real number");
-                scanner.next();
-            }
-        }
-
-    }
-
-    private static int[][] getArray(String s) {
-        int m = 0, n = 0;
-        int[][] a;
-
-        Scanner scanner = new Scanner(System.in);
-
-        while (m <= 0) {
-            m = getIntValue(scanner, s);
-        }
-
-        while (n <= 0) {
-            n = getIntValue(scanner, s);
-        }
-        a = new int[n][m];
-
-        for (int i = 0; i < n; i++) {
-            for (int j = 0; j < a[0].length; j++) {
-                a[i][j] = getIntValue(scanner, "Input the number " + i + "*" + j);
-            }
-        }
-        return a;
-    }
-
-//    int[][] a = {
-//            {1, 2, 8, 4, 5, 8},
-//            {6, 7, 8, 9, 2, 3},
-//            {3, 4, 6, 8, 9, 2},
-//            {4, 2, 1, 0, 5, 1},
-//            {8, 1, 4, 5, 7, 2},
-//            {7, 1, 6, 5, 6, 3}
-//    };
 }

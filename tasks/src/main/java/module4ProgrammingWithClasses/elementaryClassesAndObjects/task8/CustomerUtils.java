@@ -39,13 +39,12 @@ public class CustomerUtils {
     }
 
 
-    public Customer[] sortInAlphabetical() {
+    public void sortInAlphabetical() {
         Arrays.sort(customers, Comparator.comparing(Customer::getLastName)
                 .thenComparing(Customer::getFirstName)
                 .thenComparing(Customer::getPatronymic)
                 .thenComparing(Customer::getBankAccountNumber)
         );
-        return customers;
     }
 
     public Customer[] filterAtRange(long startIncluding, long endNotIncluding) {
@@ -85,14 +84,14 @@ public class CustomerUtils {
     public static void print(Customer[] customers) {
         if (customers != null) {
 
-            for (int i = 0; i < customers.length; i++) {
-                if (customers[0]==null){
+            for (Customer customer : customers) {
+                if (customers[0] == null) {
                     System.out.println("List is empty");
                     return;
-                }else if (customers[i]==null){
+                } else if (customer == null) {
                     return;
-                }else {
-                    System.out.println(customers[i]);
+                } else {
+                    System.out.println(customer);
                 }
             }
         }else {

@@ -1,12 +1,16 @@
 package module4ProgrammingWithClasses.aggregationAndComposition.task5;
 
-import module4ProgrammingWithClasses.aggregationAndComposition.task2.CarType;
-import module4ProgrammingWithClasses.aggregationAndComposition.task2.Wheel;
-
-import java.time.LocalTime;
 import java.util.List;
-import java.util.Scanner;
 
+import static module4ProgrammingWithClasses.Service.getIntValue;
+
+
+/**
+ * Туристические путевки. Сформировать набор предложений клиенту по выбору туристической
+ * путевки различного типа (отдых, экскурсии, лечение, шопинг, круиз и т. д.) для оптимального
+ * выбора. Учитывать возможность выбора транспорта, питания и числа дней. Реализовать выбор и
+ * сортировку путевок.
+ */
 public class Main {
     public static void main(String[] args) {
 
@@ -25,42 +29,40 @@ public class Main {
                 "6-get all the tours\n" +
                 "other- exit";
 
-        StringBuffer request = new StringBuffer();
+        StringBuffer request = new StringBuffer("You choice ");
 
+        newTours = tours.getCopyTours();
 
         while (true) {
 
             choice = getIntValue(infoMenu);
-            newTours = tours.getCopyTours();
             switch (choice) {
                 case 1:
-                    Type type = getType("Choice the type of tour");
+                    Type type = getType();
 
-                    newTours = tours.getToursByType(newTours, type);
+                    newTours = Tours.getToursByType(newTours, type);
 
-                    System.out.println(request.append(type + " "));
-//                    System.out.println(newTours);
+                    System.out.println(request.append(type).append(" "));
 
 
                     break;
 
                 case 2:
-                    Transport transport = getTransport("Choice the transport of tour");
+                    Transport transport = getTransport();
 
-                    newTours = tours.getToursByTransport(newTours, transport);
+                    newTours = Tours.getToursByTransport(newTours, transport);
 
-                    System.out.println(request.append(transport + " "));
+                    System.out.println(request.append(transport).append(" "));
                     System.out.println(newTours);
 
                     break;
 
                 case 3:
 
-                    Food food = getFood("Choice the food of tour");
-                    newTours = tours.getToursByFoods(newTours, food);
+                    Food food = getFood();
+                    newTours = Tours.getToursByFoods(newTours, food);
 
-                    System.out.println(request.append(food + " "));
-//                    System.out.println(newTours);
+                    System.err.println(request.append(food).append(" "));
                     break;
 
                 case 4:
@@ -70,8 +72,7 @@ public class Main {
 
                     newTours = tours.getToursByCountDays(newTours, start, endInclude);
 
-                    System.err.println(request.append(start + "-" + endInclude));
-//                    System.out.println(newTours);
+                    System.err.println(request.append(start).append("-").append(endInclude));
 
                     break;
                 case 5:
@@ -101,42 +102,11 @@ public class Main {
 
     }
 
-    private static int getIntValue(String message) {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println(message);
 
-        while (true) {
-            int a;
-            if (scanner.hasNextInt()) {
-                a = scanner.nextInt();
-                return a;
-            } else if (scanner.hasNext()) {
-                System.out.println("You have entered an invalid number, input real number");
-                scanner.next();
-            }
-        }
-
-    }
-
-    private static String getStringValue(String message) {
-        Scanner scanner = new Scanner(System.in);
-
-        System.out.println(message);
-
-        while (true) {
-            if (scanner.hasNext("\\D+")) {
-                return scanner.next("\\D+");
-            } else {
-                System.out.println("You have entered an invalid string, input string only letters");
-                scanner.next();
-            }
-        }
-    }
-
-    private static Type getType(String message) {
+    private static Type getType() {
 
         int choice, number = 1;
-        System.out.println(message);
+        System.out.println("Choice the type of tour");
 
 
         for (Type type : Type.values()) {
@@ -165,19 +135,20 @@ public class Main {
 
     }
 
-    private static Transport getTransport(String message) {
+    private static Transport getTransport() {
 
-        int choice, number = 1;
-        System.out.println(message);
+        int choice;
+        System.out.println("Choice the transport of tour");
 
 
+        int number = 1;
         for (Transport type : Transport.values()) {
 
             System.out.println("    " + number++ + "- " + type);
 
         }
 
-        choice = (int) getIntValue("");
+        choice = getIntValue("");
 
         switch (choice) {
             case 1:
@@ -193,10 +164,10 @@ public class Main {
 
     }
 
-    private static Food getFood(String message) {
+    private static Food getFood() {
 
         int choice, number = 1;
-        System.out.println(message);
+        System.out.println("Choice the food of tour");
 
 
         for (Food food : Food.values()) {
@@ -205,7 +176,7 @@ public class Main {
 
         }
 
-        choice = (int) getIntValue("");
+        choice = getIntValue("");
 
         switch (choice) {
             case 1:

@@ -1,16 +1,9 @@
 package module4ProgrammingWithClasses.elementaryClassesAndObjects.task1;
 
 public class Test1 {
-    private int a;
-    private int b;
+    public int a;
+    public int b;
 
-    public void setA(int newA) {
-        this.a = newA;
-    }
-
-    public void setB(int newB) {
-        this.b = newB;
-    }
 
     public void print() {
         System.out.println("a= " + a + "\nb= " + b);

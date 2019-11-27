@@ -1,8 +1,13 @@
 package module3StringsAndBasicsOfTextProcessing.stringAsArrayOfData;
 
 import java.util.Arrays;
-import java.util.Scanner;
 
+import static module3StringsAndBasicsOfTextProcessing.Service.getArrayString;
+
+
+/**
+ * Дан массив названий переменных в camelCase. Преобразовать названия в snake_case
+ */
 public class Task1 {
 
     public static void main(String[] args) {
@@ -10,7 +15,7 @@ public class Task1 {
         String s = "Input string";
 
         a = getArrayString(s);
-        System.out.println(Arrays.toString(transformArrayfromCamelCaseToSnake_case(a)));
+        System.out.println(Arrays.toString(transformArrayFromCamelCaseToSnake_case(a)));
     }
 
     private static String fromCamelCaseToSnake_case(String s) {
@@ -46,7 +51,7 @@ public class Task1 {
         return new String(chars);
     }
 
-    private static String[] transformArrayfromCamelCaseToSnake_case(String[] strings) {
+    private static String[] transformArrayFromCamelCaseToSnake_case(String[] strings) {
 
         for (int i = 0; i < strings.length; i++) {
             strings[i] = fromCamelCaseToSnake_case(strings[i]);
@@ -55,45 +60,5 @@ public class Task1 {
         return strings;
     }
 
-    private static int getIntValue(String message) {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println(message);
-        while (true) {
-            if (scanner.hasNextInt()) {
-                return scanner.nextInt();
-            } else if (scanner.hasNext()) {
-                System.out.println("You have entered an invalid number, input real number");
-                scanner.next();
-            }
-        }
-
-    }
-
-    private static String getString(String message) {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println(message);
-        while (true) {
-            if (scanner.hasNextLine()) {
-                return scanner.nextLine();
-            }
-        }
-    }
-
-
-    private static String[] getArrayString(String message) {
-        int n = 0;
-        String[] a;
-        String s = "Input the number of element in array string";
-
-        while (n <= 0) {
-            n = getIntValue(s);
-        }
-        a = new String[n];
-
-        for (int i = 0; i < n; i++) {
-            a[i] = getString(message);
-        }
-        return a;
-    }
 
 }

@@ -1,41 +1,23 @@
 package module2Algorithmization.oneDimensionalArray;
 
-import java.util.Scanner;
+import static module2Algorithmization.Service.getArrayInt;
 
+
+/**
+ * В массиве целых чисел с количеством элементов n найти наиболее часто
+ * встречающееся число. Если таких чисел несколько, то определить наименьшее из них
+ */
 public class Task9 {
     public static void main(String[] args) {
-        int n = 0;
         int[] a;
 
-        Scanner scanner = new Scanner(System.in);
-
-        while (n <= 0) {
-            n = getIntValue(scanner, "Input the number of elements in the array");
-        }
-        a = new int[n];
-
-        for (int i = 0; i < n; i++) {
-            a[i] = getIntValue(scanner, "Input the number 0");
-        }
-
+        a = getArrayInt("Input array");
 
         System.out.println("min= " + min(maximumNumber(countNumbers(a))));
 
 
     }
 
-    private static int getIntValue(Scanner scanner, String message) {
-        System.out.println(message);
-        while (true) {
-            if (scanner.hasNextInt()) {
-                return scanner.nextInt();
-            } else if (scanner.hasNext()) {
-                System.out.println("You have entered an invalid number, input real number");
-                scanner.next();
-            }
-        }
-
-    }
 
     private static int[][] countNumbers(int[] input) {
         int count = 0;
@@ -43,17 +25,17 @@ public class Task9 {
         int[][] output;
 
 
-        for (int i = 0; i < input.length; i++) {
+        for (int value : input) {
             boolean isHaveInArray = false;
             for (int j = 0; j < count; j++) {
-                if (test[j][0] == input[i]) {
+                if (test[j][0] == value) {
                     test[j][1] = test[j][1] + 1;
                     isHaveInArray = true;
                 }
             }
 
             if (!isHaveInArray) {
-                test[count][0] = input[i];
+                test[count][0] = value;
                 test[count][1] = 1;
                 count++;
             }
@@ -71,9 +53,9 @@ public class Task9 {
 
     private static int min(int[] input) {
         int min = input[0];
-        for (int i = 0; i < input.length; i++) {
-            if (input[i] < min) {
-                min = input[i];
+        for (int value : input) {
+            if (value < min) {
+                min = value;
             }
         }
 
@@ -81,18 +63,18 @@ public class Task9 {
     }
 
     private static int[] maximumNumber(int[][] input) {
-        int[] maxOutput, max = new int[input.length];
+        int[] maxOutput;
         int maxValue = input[0][0];
         int countMaxValue = 0;
 
-        for (int i = 0; i < input.length; i++) {
-            if (input[i][1] > maxValue) {
-                maxValue = input[i][1];
+        for (int[] value : input) {
+            if (value[1] > maxValue) {
+                maxValue = value[1];
             }
         }
 
-        for (int i = 0; i < input.length; i++) {
-            if (input[i][1] == maxValue) {
+        for (int[] ints : input) {
+            if (ints[1] == maxValue) {
                 countMaxValue++;
             }
         }

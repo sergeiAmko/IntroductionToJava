@@ -1,8 +1,11 @@
 package module3StringsAndBasicsOfTextProcessing.stringAsArrayOfData;
 
-import java.util.Arrays;
-import java.util.Scanner;
+import static module3StringsAndBasicsOfTextProcessing.Service.getString;
 
+
+/**
+ * замените в строке все вхождения 'word' на 'letter'
+ */
 public class Task2 {
 
     public static void main(String[] args) {
@@ -14,17 +17,6 @@ public class Task2 {
 
     }
 
-
-
-    private static String getString(String message) {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println(message);
-        while (true) {
-            if (scanner.hasNextLine()) {
-                return scanner.nextLine();
-            }
-        }
-    }
 
     private static String changeLine(String s) {
         char[] a = s.toCharArray();
@@ -42,8 +34,8 @@ public class Task2 {
                     b[k + j] = replacingCharArray[k];
                     count++;
                 }
-                j +=5;
-                i+=3;
+                j += 5;
+                i += 3;
                 count++;
             } else {
                 b[j] = a[i];
@@ -57,8 +49,7 @@ public class Task2 {
             out[i] = b[i];
         }
 
-        String ss = new String(out);
 
-        return ss;
+        return new String(out);
     }
 }

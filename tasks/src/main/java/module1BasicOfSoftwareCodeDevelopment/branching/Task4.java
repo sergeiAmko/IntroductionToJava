@@ -1,20 +1,23 @@
 package module1BasicOfSoftwareCodeDevelopment.branching;
 
-import java.util.Scanner;
 
+import static module1BasicOfSoftwareCodeDevelopment.Service.getIntValue;
+
+
+/**
+ * Задданы размеры А, B прямоугольного отверстия и размеры x,y,z кирпича.
+ * Определить, пройдет ли корпич через отверстие.
+ */
 public class Task4 {
     public static void main(String[] args) {
         int a, b, x, y, z, areaInlet, areaXY, areaYZ, areaXZ;
-        double delta = 1e-6;
         boolean isPass = false;
 
-        Scanner scanner = new Scanner(System.in);
-
-        a = getIntValue(scanner, "Input real number A");
-        b = getIntValue(scanner, "Input real number B");
-        x = getIntValue(scanner, "Input real number x");
-        y = getIntValue(scanner, "Input real number y");
-        z = getIntValue(scanner, "Input real number z");
+        a = getIntValue("Input real number A");
+        b = getIntValue("Input real number B");
+        x = getIntValue("Input real number x");
+        y = getIntValue("Input real number y");
+        z = getIntValue("Input real number z");
 
         areaInlet = a * b;
         areaXY = x * y;
@@ -30,19 +33,6 @@ public class Task4 {
         }
 
         System.out.println(isPass ? "passes" : "don't pass");
-
-    }
-
-    private static int getIntValue(Scanner scanner, String message) {
-        System.out.println(message);
-        while (true) {
-            if (scanner.hasNextInt()) {
-                return scanner.nextInt();
-            } else if (scanner.hasNext()) {
-                System.out.println("You have entered an invalid number, input real number");
-                scanner.next();
-            }
-        }
 
     }
 

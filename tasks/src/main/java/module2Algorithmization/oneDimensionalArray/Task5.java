@@ -1,25 +1,21 @@
 package module2Algorithmization.oneDimensionalArray;
 
-import java.util.Scanner;
+import static module2Algorithmization.Service.getArrayInt;
 
+
+/**
+ * Даны целые числа а[1], а[2], а[3],..., а[n].
+ * Вывести на печать только те числа, для которых ai>i
+ */
 public class Task5 {
     public static void main(String[] args) {
 
-        int n = 0;
         int[] a;
-        Scanner scanner = new Scanner(System.in);
 
-        while (n <= 0) {
-            n = getIntValue(scanner, "Input the number of elements in the array ");
-        }
-        a = new int[n];
-
-        for (int i = 0; i < n; i++) {
-            a[i] = getIntValue(scanner, "Input the number 0");
-        }
+        a=getArrayInt("Input  array");
 
         System.out.print("a[i]>i - ");
-        for (int i = 0; i < n; i++) {
+        for (int i = 0; i < a.length; i++) {
             if (a[i]>i){
                 System.out.print(a[i]+", ");
             }
@@ -27,17 +23,5 @@ public class Task5 {
     }
 
 
-    private static int getIntValue(Scanner scanner, String message) {
-        System.out.println(message);
-        while (true) {
-            if (scanner.hasNextInt()) {
-                return scanner.nextInt();
-            } else if (scanner.hasNext()) {
-                System.out.println("You have entered an invalid number, input real number");
-                scanner.next();
-            }
-        }
-
-    }
 
 }

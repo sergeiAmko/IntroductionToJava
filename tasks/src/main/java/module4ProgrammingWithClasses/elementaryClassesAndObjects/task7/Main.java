@@ -1,9 +1,12 @@
 package module4ProgrammingWithClasses.elementaryClassesAndObjects.task7;
 
-import module4ProgrammingWithClasses.elementaryClassesAndObjects.task5.Counter;
+import static module4ProgrammingWithClasses.Service.getIntValue;
 
-import java.util.Scanner;
 
+/**
+ * Описать класс, представляющий треугольник. Предусмотреть методы для создания объектов,
+ * вычисления площади, периметра и точки пересечения медиан.
+ */
 public class Main {
     public static void main(String[] args) {
 
@@ -31,8 +34,10 @@ public class Main {
             case 1:
                 int parAX = getIntValue(strParameter1 + strX);
                 int parAY = getIntValue(strParameter1 + strY);
+
                 int parBX = getIntValue(strParameter2 + strX);
                 int parBY = getIntValue(strParameter2 + strY);
+
                 int parCX = getIntValue(strParameter3 + strX);
                 int parCY = getIntValue(strParameter3 + strY);
 
@@ -56,7 +61,7 @@ public class Main {
                     System.out.println("Area= " + triangle.area());
                     break;
                 case 3:
-                    System.out.println("Point of intersection of medians= "+triangle.pointOfIntersectionOfMedians().toString());
+                    System.out.println("Point of intersection of medians= " + triangle.pointOfIntersectionOfMedians().toString());
                     break;
                 default:
                     System.exit(0);
@@ -65,20 +70,5 @@ public class Main {
 
 
     }
-
-    private static int getIntValue(String message) {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println(message);
-        while (true) {
-            if (scanner.hasNextInt()) {
-                return scanner.nextInt();
-            } else if (scanner.hasNext()) {
-                System.out.println("You have entered an invalid number, input real number");
-                scanner.next();
-            }
-        }
-
-    }
-
 
 }

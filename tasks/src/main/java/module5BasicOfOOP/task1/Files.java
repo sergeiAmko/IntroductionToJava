@@ -1,8 +1,5 @@
 package module5BasicOfOOP.task1;
 
-import java.util.List;
-import java.util.Set;
-
 public class Files {
 
     public static void create(String name, String contents, Directory directory) {

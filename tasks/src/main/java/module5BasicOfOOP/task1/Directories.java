@@ -5,12 +5,11 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.ArrayList;
 import java.util.List;
 
 
 /**
- * Утилитный класс, который  распознает  дерево директориев и файлов из файла source.txt
+ * Утилитный класс, который  распознает  дерево директориев и файлов из файла sourceBook.txt
  */
 
 
@@ -25,7 +24,7 @@ public class Directories {
 
     public static Directory getDirectory() {
 
-        Directory directory = new Directory("Main");
+        Directory directory = new Directory("Execution");
 
 
         try (BufferedReader bufferedReader = Files.newBufferedReader(pathSource)) {
@@ -43,11 +42,11 @@ public class Directories {
 
                 int position;
 
-                for (int i = 0; i < sSplit.length ; i++) {
+                for (int i = 0; i < sSplit.length; i++) {
 
-                    if (sSplit[i].contains(".") ) {
+                    if (sSplit[i].contains(".")) {
 
-                        promDirectory.addFile(new File(sSplit[i], s.substring(indexContents+1)));
+                        promDirectory.addFile(new File(sSplit[i], s.substring(indexContents + 1)));
 
                     } else if ((position = hasInList(promDirectory.getDirectories(), sSplit[i])) != -1) {
 

@@ -1,57 +1,39 @@
 package module2Algorithmization.decompositionUsingMethods;
 
-import java.util.Scanner;
+import module2Algorithmization.Service;
 
+
+/**
+ * Задан массив D. Определить следующие суммы:
+ * D[1]+D[2]+D[3]; D[3]+D[4]+D[5]; D[4]+D[5]+D[6].
+ * Пояснение. Составить метод (методы) для вычисления суммы трех последовательно расположенных элементов
+ * массива с номерами от k до m
+ */
 public class Task8 {
     public static void main(String[] args) {
         int[] a;
-        String s = "Input the number elements of array";
+        String s = "Input array";
 
-        a = getArray(s);
+        a = Service.getArrayInt(s);
 
         for (int i = 0; i < a.length; i = i + 2) {
-            System.out.println("sum from D[" + i + "] to D[" + (i + 2) + "]= " + summNumbersOfArrayFromStartToEnd(a, i, i + 3));
-
-        }
-
-    }
-
-    private static int getIntValue(Scanner scanner, String message) {
-        System.out.println(message);
-        while (true) {
-            if (scanner.hasNextInt()) {
-                return scanner.nextInt();
-            } else if (scanner.hasNext()) {
-                System.out.println("You have entered an invalid number, input real number");
-                scanner.next();
+            int k = 3;
+            if (i + k - 1 > a.length) {
+                k = a.length - i;
             }
+            System.out.println("sum from D[" + (i+1) + "] to D[" + (i + k ) + "]= " + sumNumbersOfArrayFromStartToEnd(a, i, i + k));
+
         }
 
     }
 
-    private static int[] getArray(String s) {
-        int n = 0;
-        int[] a;
 
-        Scanner scanner = new Scanner(System.in);
-
-        while (n <= 0) {
-            n = getIntValue(scanner, s);
-        }
-        a = new int[n];
-
-        for (int i = 0; i < n; i++) {
-            a[i] = getIntValue(scanner, "Input the number " + i);
-        }
-        return a;
-    }
-
-    private static int summNumbersOfArrayFromStartToEnd(int[] a, int start, int end) {
+    private static int sumNumbersOfArrayFromStartToEnd(int[] a, int start, int end) {
         int sum = 0;
         if (end > a.length) {
             end = a.length;
         }
-        System.out.print("Values from D[" + start + "] to D[" + end + "]= [");
+        System.out.print("Values from D[" + (start+1) + "] to D[" + end + "]= [");
         for (int i = start; i < end; i++) {
             sum += a[i];
             System.out.print(a[i] + ", ");

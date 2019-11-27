@@ -1,79 +1,52 @@
 package module2Algorithmization.OneDimensionalArraysSort;
 
-import java.util.Arrays;
-import java.util.Scanner;
+import module2Algorithmization.Service;
 
+import java.util.Arrays;
+
+
+/**
+ * Сортировка обменами. Дана последовательность чисел a[1]<=a[2]<=...<=a[n]. Требуется
+ * переставить числа в порядке возрастания. Для этого сравниваются два соседних числа a[i] и a[i+1],
+ * то делается перестановка. Так продолжается до тех пор, пока все элементы не станут расположены в
+ * порядке возрастания. Составить алгорится сортировки, подсчитывая при этом количества перестановок.
+ */
 public class Task4 {
     public static void main(String[] args) {
         int[] a;
 
-        a = getIncreasingArray("Input the number of elements in the  array a ");
+        a = Service.getIncreasingArrayOfInt("Input the  array");
 
         System.out.println(Arrays.toString(sortBySelection(a)));
 
     }
 
-    private static int getIntValue(Scanner scanner, String message) {
-        System.out.println(message);
-        while (true) {
-            if (scanner.hasNextInt()) {
-                return scanner.nextInt();
-            } else if (scanner.hasNext()) {
-                System.out.println("You have entered an invalid number, input real number");
-                scanner.next();
-            }
-        }
-
-    }
-
-    private static int[] getIncreasingArray(String s) {
-        int n = 0;
-        int[] a;
-
-        Scanner scanner = new Scanner(System.in);
-
-        while (n <= 0) {
-            n = getIntValue(scanner, s);
-        }
-        a = new int[n];
-
-        for (int i = 0; i < n; i++) {
-            String t = s, s1 = "Input the number more than previous-  ";
-            boolean isMore = false;
-            if (i == 0) {
-                a[i] = getIntValue(scanner, "Input a[" + i + "] ");
-            } else {
-                while (!isMore) {
-                    a[i] = getIntValue(scanner, t + a[i - 1]);
-                    if (a[i] >= a[i - 1]) {
-                        isMore = true;
-                    }
-                    t = s1;
-                }
-            }
-        }
-        return a;
-    }
 
     private static int[] sortBySelection(int a[]) {
+        int count = 0;
 
         while (true) {
-            boolean isIncreasingNot=true;
+            boolean isIncreasingNot = true;
 
             for (int i = 1; i < a.length; i++) {
-                if (a[i-1]>a[i]){
+                if (a[i - 1] > a[i]) {
                     int r = a[i];
-                    a[i] = a[i-1];
-                    a[i-1] = r;
-                    isIncreasingNot=false;
+                    a[i] = a[i - 1];
+                    a[i - 1] = r;
+                    isIncreasingNot = false;
+                    count++;
                 }
 
 
             }
-            if (isIncreasingNot){
+            if (isIncreasingNot) {
                 break;
             }
+
         }
+
+        System.out.println("Count= " + count);
+
         return a;
     }
 }

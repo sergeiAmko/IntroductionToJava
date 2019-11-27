@@ -1,7 +1,11 @@
 package module3StringsAndBasicsOfTextProcessing.stringIsObject;
 
-import java.util.Scanner;
+import static module3StringsAndBasicsOfTextProcessing.Service.getString;
 
+
+/**
+ * В строке вставить после каждого символа 'a' символ 'b'
+ */
 public class Task2 {
     public static void main(String[] args) {
 
@@ -12,18 +16,9 @@ public class Task2 {
 
     }
 
-    private static String getString(String message) {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println(message);
-        while (true) {
-            if (scanner.hasNextLine()) {
-                return scanner.nextLine();
-            }
-        }
-    }
 
-    private static String replaceFromAToAb(String s){
-        return s.replaceAll("a","ab");
+    private static String replaceFromAToAb(String s) {
+        return s.replaceAll("a", "ab");
     }
 
 }

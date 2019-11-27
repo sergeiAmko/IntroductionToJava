@@ -1,5 +1,5 @@
 Путешествие в баку, Азербайжан, Баку, EXCURSIONS, PLANE TRAIN BUS,  WITHOUT_MEALS  BREAKFAST ALL_INCLUSIVE, 10, 30
 Путешествие в Милан, Италия, Милан, EXCURSIONS, PLANE, WITHOUT_MEALS ALL_INCLUSIVE, 5, 35
 Путешествие в Берлин, Германия, Берлин Нюрберг Мюнхен, EXCURSIONS, TRAIN BUS, WITHOUT_MEALS BREAKFAST_LUNCH_DINNER BREAKFAST ALL_INCLUSIVE, 4, 40
-Путешествие в Киев, Украина, Киев Хмельницкий Одесса, EXCURSIONS, PLANE BUS, BREAKFAST_LUNCH_DINNER BREAKFAST_LUNCH_DINNER, 21, 45
+Путешествие в Киев, Украина, Киев Хмельницкий Одесса, EXCURSIONS, PLANE BUS, BREAKFAST_LUNCH_DINNER BREAKFAST_DINNER, 21, 45
 Путешествие в Москву, Россия Финляндия Индия, Москва Ростов Питер, EXCURSIONS, PLANE TRAIN SHIP,  WITHOUT_MEALS BREAKFAST_LUNCH_DINNER  BREAKFAST_DINNER BREAKFAST ALL_INCLUSIVE, 24, 60

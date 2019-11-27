@@ -1,10 +1,15 @@
 package module2Algorithmization.decompositionUsingMethods;
 
 import java.util.Arrays;
-import java.util.Scanner;
 
 import static java.lang.Math.pow;
+import static module2Algorithmization.Service.*;
 
+
+/**
+ * Написать программу, определяющую сумму n - значных чисел, содержащих только нечетные цифры.
+ * Определить также, сколько четных цифр в найденной сумме. Для решения задачи использовать декомпозицию
+ */
 public class Task16 {
     public static void main(String[] args) {
         int n, sum, countEvenNumber;
@@ -23,48 +28,9 @@ public class Task16 {
 
     }
 
-    private static int getIntValue(String message) {
-        Scanner scanner = new Scanner(System.in);
 
-        System.out.println(message);
-        while (true) {
-            if (scanner.hasNextInt()) {
-                return scanner.nextInt();
-            } else if (scanner.hasNext()) {
-                System.out.println("You have entered an invalid number, input real number");
-                scanner.next();
-            }
-        }
 
-    }
 
-    private static int[] getDigitsOfNumber(int n) {
-        int count = countDigits(n);
-        int[] digits;
-        int i = count - 1;
-
-        digits = new int[count];
-        for (int j = 0; j < count; j++) {
-            {
-                digits[i] = n % 10;
-                n /= 10;
-                i--;
-            }
-
-        }
-        return digits;
-    }
-
-    private static int countDigits(int n) {
-        int count = 0;
-
-        while (n > 0) {
-            n /= 10;
-            count++;
-        }
-        return count;
-
-    }
 
     private static boolean isOddNumber(int n) {
         int countDigits = countDigits(n);

@@ -1,35 +1,30 @@
 package module3StringsAndBasicsOfTextProcessing.stringIsObject;
 
-import java.util.Scanner;
+import static module3StringsAndBasicsOfTextProcessing.Service.getString;
 
+
+/**
+ * Подсчитать, сколько раз среди символов заданной строки встречается буква "а".
+ */
 public class Task5 {
     public static void main(String[] args) {
         String a = "Input string";
         String s = getString(a);
 
-        char countingLetter='a';
+        char countingLetter = 'a';
 
-        System.out.println(countCharacherInLine(s,countingLetter));
+        System.out.println("Number 'a' in line= " + countCharacterInLine(s, countingLetter));
     }
 
-    private static int countCharacherInLine(String stringToCount,char characterCount){
-        int count=0;
-        for (char c:stringToCount.toCharArray()) {
-            if (c==characterCount){
+    private static int countCharacterInLine(String stringToCount, char characterCount) {
+        int count = 0;
+        for (char c : stringToCount.toCharArray()) {
+            if (c == characterCount) {
                 count++;
             }
         }
         return count;
     }
 
-    private static String getString(String message) {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println(message);
-        while (true) {
-            if (scanner.hasNextLine()) {
-                return scanner.nextLine();
-            }
-        }
-    }
 
 }

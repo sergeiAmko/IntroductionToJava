@@ -1,14 +1,18 @@
 package module3StringsAndBasicsOfTextProcessing.stringAsArrayOfData;
 
-import java.util.Scanner;
+import static module3StringsAndBasicsOfTextProcessing.Service.getString;
 
+
+/**
+ * В строке найти количество цифр
+ */
 public class Task3 {
 
     public static void main(String[] args) {
         String s = "Input string";
         String a = getString(s);
 
-        System.out.println((countDigitsInLine(a)));
+        System.out.println("Number of digits= " + countDigitsInLine(a));
     }
 
     private static int countDigitsInLine(String s) {
@@ -23,14 +27,5 @@ public class Task3 {
         return count;
     }
 
-    private static String getString(String message) {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println(message);
-        while (true) {
-            if (scanner.hasNextLine()) {
-                return scanner.nextLine();
-            }
-        }
-    }
 
 }

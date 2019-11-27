@@ -13,8 +13,8 @@ public class Text {
     }
 
     public Text(String title) {
-        sentences=new ArrayList<>();
-        this.title=title;
+        sentences = new ArrayList<>();
+        this.title = title;
     }
 
 
@@ -29,15 +29,15 @@ public class Text {
     @Override
     public String toString() {
 
-        StringBuffer stringBuffer=new StringBuffer();
+        StringBuilder stringBuilder = new StringBuilder();
 
         for (int i = 0; i < sentences.size(); i++) {
-            stringBuffer.append(sentences.get(i));
-            stringBuffer.deleteCharAt(stringBuffer.lastIndexOf(" "));
-            stringBuffer.append(".");
+            stringBuilder.append(sentences.get(i));
+            stringBuilder.deleteCharAt(stringBuilder.lastIndexOf(" "));
+            stringBuilder.append(".");
         }
 
-        return stringBuffer.toString();
+        return stringBuilder.toString();
 
     }
 
@@ -48,7 +48,7 @@ public class Text {
         }
     }
 
-    public void print(){
+    public void print() {
         this.toString();
     }
 
