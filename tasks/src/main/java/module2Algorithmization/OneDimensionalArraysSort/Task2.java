@@ -2,7 +2,7 @@ package module2Algorithmization.OneDimensionalArraysSort;
 
 import java.util.Arrays;
 
-import static module2Algorithmization.Service.getIncreasingArrayOfInt;
+import static module2Algorithmization.Service.*;
 
 /**
  * Даны две последовательности a[1]<=a[2]<=...<=a[n] и b[1]<=b[2]<=...<=b[m].
@@ -13,9 +13,28 @@ import static module2Algorithmization.Service.getIncreasingArrayOfInt;
 public class Task2 {
     public static void main(String[] args) {
         int[] a, b;
+        int aSize;
 
-        a = getIncreasingArrayOfInt("Input the  array a ");
         b = getIncreasingArrayOfInt("Input the  array b ");
+
+        aSize = getPositiveIntValue("Input size of array a");
+
+        a = new int[aSize + b.length];
+
+        for (int i = 0; i < aSize; i++) {
+            boolean isMore = false;
+            if (i == 0) {
+                a[i] = getIntValue("Input [" + i + "]");
+            } else {
+                while (!isMore) {
+                    a[i] = getIntValue("Input [" + i + "]");
+                    if (a[i] >= a[i - 1]) {
+                        isMore = true;
+                    }
+                }
+            }
+        }
+
 
         System.out.println(Arrays.toString(mergeTwoArraysAscendingOrder(a, b)));
 
@@ -23,34 +42,24 @@ public class Task2 {
 
 
     private static int[] mergeTwoArraysAscendingOrder(int a[], int[] b) {
-        int[] outArray = new int[a.length + b.length];
-        boolean isBEnd = false;
 
-        for (int i = 0; i < a.length; i++) {
-            outArray[i] = a[i];
-        }
+        for (int i = 0, bInd = 0; i < a.length; i++) {
 
+            if (bInd != b.length &&
+                    a[i] > b[bInd]) {
 
-        for (int i = 0, bI = 0; i < outArray.length; i++) {
+                for (int j = a.length - 1; j > i; j--) {
 
-            if (outArray[i] >= b[bI]) {
-
-                for (int j = outArray.length - 1; j > i; j--) {
-
-                    outArray[j] = outArray[j - 1];
+                    a[j] = a[j - 1];
 
                 }
-
-                outArray[i] = b[bI];
-                bI++;
+                a[i] = b[bInd];
+                bInd++;
 
             }
 
+        }
 
-        }
-        if (outArray[outArray.length - 1] < b[b.length - 1]) {
-            outArray[outArray.length - 1] = b[b.length - 1];
-        }
-        return outArray;
+        return a;
     }
 }

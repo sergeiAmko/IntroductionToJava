@@ -2,7 +2,7 @@ package module5BasicOfOOP.task4;
 
 import java.util.List;
 
-import static module5BasicOfOOP.task4.Consoles.getIntValue;
+import static module5BasicOfOOP.Service.getIntValue;
 
 /**
  * Создать програму, позволяющую обрабатывать сведения о 100 сокровищах в пещере дракона.
