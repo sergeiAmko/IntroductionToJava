@@ -6,6 +6,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.stream.Collectors;
 
 import static module6Tasks.task1.GetValues.*;
 import static module6Tasks.task1.UserService.*;
@@ -113,7 +114,7 @@ public class Execution {
     }
 
 
-    public boolean action() {
+    public void action() {
 
         String infoStartMenu = "\nInput the number:\n" +
                 "   1- Choose a book among all bookCatalog\n" +
@@ -184,11 +185,10 @@ public class Execution {
                     }
 
                 default:
-                    return false;
+                    System.exit(0);
 
             }
         }
-        return false;
 
     }
 
@@ -208,6 +208,8 @@ public class Execution {
 
         while (isUser) {
 
+            selectedBook = selectionBook(bookCatalog.getBooks());
+
             choice = getIntValue(infoMenu);
 
             switch (choice) {
@@ -215,6 +217,9 @@ public class Execution {
 
                     String newName = getStringLine("\nInput new name for the book \"" + selectedBook.getName() + "\"");
                     selectedBook.setName(newName);
+
+                    bookCatalog.save();
+
                     System.out.println("Name was updated");
                     break;
 
@@ -223,17 +228,23 @@ public class Execution {
                     String newAuthors = getStringLine("Old authors: " + selectedBook.getAuthors() +
                             "\nInput all new authors for the book \"" + selectedBook.getName() + "\"");
                     selectedBook.setAuthors(newAuthors);
-                    System.out.println("Authors was updated");
+
+                    bookCatalog.save();
+
+                    System.out.println("Authors were updated");
                     break;
 
                 case 3:
 
                     String newContent = getStringLine("\nInput new content for the book \"" + selectedBook.getName() + "\"");
                     selectedBook.setContent(newContent);
+
+                    bookCatalog.save();
+
                     break;
                 case 4:
 
-                    String newDescription = getStringLine("Input new description for the book \"" + selectedBook.getName() + "\"");
+                    String newDescription = getStringUntilExit("Input new description for the book \"" + selectedBook.getName() + "\"");
                     selectedBook.setDescription(newDescription);
 
                     List<User> admins = new ArrayList<>();
@@ -246,7 +257,9 @@ public class Execution {
 
                     }
 
-                    MailService.send(admins, selectedBook);
+                    bookCatalog.save();
+
+                    MailService.send(admins, selectedBook, "Book was added by administrator");
                     System.out.println("Description was updated");
                     break;
 
@@ -254,12 +267,18 @@ public class Execution {
 
                     int newCountPage = getIntValue("Input new count page for the book \"" + selectedBook.getName() + "\"");
                     selectedBook.setCountPage(newCountPage);
+
+                    bookCatalog.save();
+
                     System.out.println("Count page was updated");
                     break;
                 case 6:
 
                     int newYearPublication = getIntValue("Input new year publication for the book \"" + selectedBook.getName() + "\"");
                     selectedBook.setYearPublishing(newYearPublication);
+
+                    bookCatalog.save();
+
                     System.out.println("Year publication was updated");
                     break;
                 case 7:
@@ -267,6 +286,9 @@ public class Execution {
                     String newKindString = getStringLine("Input new kind of the book \"" + selectedBook.getName() + "\"");
                     Kind newKind = newKindString.equals(Kind.Paper.toString()) ? Kind.Paper : Kind.Electronic;
                     selectedBook.setKind(newKind);
+
+                    bookCatalog.save();
+
                     System.out.println("Kind book was updated");
                     break;
 
@@ -295,65 +317,54 @@ public class Execution {
         String numberPhone;
         String role = "user";
 
-        while (true) {
+        do {
             firstName = getStringValue("Input your first name");
 
-            if (checkFirstName(firstName)) {
-                break;
-            }
-        }
+        } while (!checkFirstName(firstName));
 
-        while (true) {
+
+        do {
             lastName = getStringValue("Input your last name");
 
-            if (checkLastName(lastName)) {
-                break;
-            }
-        }
+        } while (!checkLastName(lastName));
 
-        while (true) {
+
+        do {
             login = getStringLine("Input your login");
 
-            if (checkLogin(login) && !hasLoginInList(login, userCatalog.getUsers())) {
-                break;
-            }
-        }
+        } while (!checkLogin(login) || hasLoginInList(login, userCatalog.getUsers()));
 
-        while (true) {
-            email = getStringValue("Input your email");
 
-            if (checkEmail(email)) {
-                break;
-            }
-        }
+        do {
+            email = getStringLine("Input your email");
 
-        while (true) {
+        } while (!checkEmail(email));
+
+
+        do {
             password = getStringLine("Input your password");
 
-            if (checkPassword(password)) {
-                break;
-            }
-        }
+        } while (!checkPassword(password));
 
-        while (true) {
+
+        do {
             numberPhone = String.valueOf(getLongValue("Input your number phone"));
 
-            if (checkNumberPhone(numberPhone)) {
-                break;
-            }
-        }
+        } while (!checkNumberPhone(numberPhone));
 
 
         userCatalog.add(firstName, lastName, login, email, password, numberPhone, role);
     }
 
-    public boolean suggestAddBook() {
+    public void suggestAddBook() {
 
         Book book = createBook();
 
-        booksSuggestForAdmin.add(new BookSuggest(book, userSignIn));
+        List<User> collect = userCatalog.getUsers().stream().filter(s -> s.getRole().equals(Role.Admin)).collect(Collectors.toList());
 
-        return true;
+        MailService.send(collect, book, "You were sent a book from a user to add to the library");
+
+        booksSuggestForAdmin.add(new BookSuggest(book, userSignIn));
 
     }
 
@@ -406,6 +417,8 @@ public class Execution {
 
         line.append("\t");
 
+        System.out.print("Content the book: ");
+
         for (int i = 0; i < words.length; i++) {
 
             if (lines.size() == countLineOnPage) {
@@ -424,7 +437,7 @@ public class Execution {
 
 
             } else {
-//
+
                 if (words[i].contains("\n")) {
                     line.append(words[i].replace("\n", ""));
                     lines.add(line.toString());
@@ -433,12 +446,13 @@ public class Execution {
 
                 } else {
 
-                    line.append(words[i] + " ");
+                    line.append(words[i]).append(" ");
                 }
             }
 
 
         }
+        lines.add(line.toString());
 
         pages.add(lines);
 
@@ -517,7 +531,7 @@ public class Execution {
 
             if (move == 1) {
                 bookCatalog.add(selectedBook);
-                MailService.send(userCatalog.getUsers(), selectedBook);
+                MailService.send(userCatalog.getUsers(), selectedBook, "Book was added by administrator");
             }
 
 

@@ -107,7 +107,7 @@ public class GetValues {
                 if (line.equalsIgnoreCase("exit")) {
                     break;
                 } else {
-                    stringBuilder.append(line);
+                    stringBuilder.append(line).append("\n");
                 }
 
             } else {

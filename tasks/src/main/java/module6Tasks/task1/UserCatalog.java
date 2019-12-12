@@ -123,6 +123,7 @@ public class UserCatalog {
 
         if (!users.contains(user)) {
             users.add(user);
+            save();
             return true;
         }
         return false;

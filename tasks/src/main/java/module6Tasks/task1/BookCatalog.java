@@ -46,12 +46,16 @@ public class BookCatalog {
             } catch (NumberFormatException e) {
                 System.err.println("Incorrect data the book");
             }
+
+
+            save();
+
         }
     }
 
     public void save(){
 
-        ReadWriteFiles readWriteFiles = new ReadWriteFiles("bookCatalog");
+        ReadWriteFiles readWriteFiles = new ReadWriteFiles("books");
         List<String> linesForSave=new ArrayList<>();
 
         for (Book book: books) {
@@ -124,6 +128,7 @@ public class BookCatalog {
         if (book != null) {
 
             books.add(book);
+            save();
             return true;
 
         }

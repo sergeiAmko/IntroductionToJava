@@ -5,11 +5,11 @@ public class Main {
     public static void main(String[] args) {
 
         Execution execution = new Execution();
-        do {
+        while (true) {
 
             execution.authentication();
-
-        } while (execution.action());
+            execution.action();
+        }
 
     }
 
